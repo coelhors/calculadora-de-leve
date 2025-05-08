@@ -17,12 +17,13 @@ const SERVICOS = [
   { id: 10, nome: "Período de acompanhamento (120 dias)", valor: 400.00, tipo: "base", categoria: "acompanhamento" },
   { id: 11, nome: "Período de acompanhamento (150 dias)", valor: 500.00, tipo: "base", categoria: "acompanhamento" },
   
-  { id: 12, nome: "Leitura crítica (se o cliente não quiser leitura)", valor: 0.00, tipo: "fixo", categoria: "leitura" },
+  // Modificado conforme solicitado
+  { id: 12, nome: "Não vão querer leitura crítica", valor: 0.00, tipo: "fixo", categoria: "leitura" },
   { id: 13, nome: "Leitura crítica (até 25 páginas)", valorPorPagina: 13.50, tipo: "porPagina", categoria: "leitura", minPaginas: 1, maxPaginas: 25 },
-  { id: 14, nome: "Leitura crítica (de 25 a 50 páginas)", valorPorPagina: 11.50, tipo: "porPagina", categoria: "leitura", minPaginas: 26, maxPaginas: 50 },
-  { id: 15, nome: "Leitura crítica (de 50 a 75 páginas)", valorPorPagina: 9.50, tipo: "porPagina", categoria: "leitura", minPaginas: 51, maxPaginas: 75 },
-  { id: 16, nome: "Leitura crítica (de 75 a 100 páginas)", valorPorPagina: 7.50, tipo: "porPagina", categoria: "leitura", minPaginas: 76, maxPaginas: 100 },
-  { id: 17, nome: "Leitura crítica (de 100 a 300 páginas)", valorPorPagina: 5.50, tipo: "porPagina", categoria: "leitura", minPaginas: 101, maxPaginas: 300 },
+  { id: 14, nome: "Leitura crítica (de 25 a 50 páginas)", valorPorPagina: 11.50, tipo: "porPagina", categoria: "leitura", minPaginas: 25, maxPaginas: 50 },
+  { id: 15, nome: "Leitura crítica (de 50 a 75 páginas)", valorPorPagina: 9.50, tipo: "porPagina", categoria: "leitura", minPaginas: 50, maxPaginas: 75 },
+  { id: 16, nome: "Leitura crítica (de 75 a 100 páginas)", valorPorPagina: 7.50, tipo: "porPagina", categoria: "leitura", minPaginas: 75, maxPaginas: 100 },
+  { id: 17, nome: "Leitura crítica (de 100 a 300 páginas)", valorPorPagina: 5.50, tipo: "porPagina", categoria: "leitura", minPaginas: 100, maxPaginas: 300 },
   
   { id: 18, nome: "Formatação (se o cliente não quiser Formatação)", valor: 0.00, tipo: "fixo", categoria: "formatacao" },
   { id: 19, nome: "Formatação ABNT (até 25 páginas)", valorPorPagina: 8.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 1, maxPaginas: 25 },
@@ -124,59 +125,11 @@ const CalculadoraDeLeve = () => {
     // Redefine a quantidade de páginas quando selecionar "não querer" serviço
     if (servico.valor === 0 && (categoria === 'leitura' || categoria === 'formatacao')) {
       setPaginas(prev => ({...prev, [categoria]: 0}));
+    } else if (servico.tipo === 'porPagina') {
+      // Define o número mínimo de páginas quando selecionar um serviço por página
+      setPaginas(prev => ({...prev, [categoria]: servico.minPaginas}));
     }
   }, []);
-  
-  // Função para atualizar quantidade de páginas
-  const alterarPaginas = (categoria, valor) => {
-    // Não permita alterar páginas se o serviço não estiver selecionado ou for "não querer"
-    if (!servicosSelecionados[categoria] || servicosSelecionados[categoria].valor === 0) {
-      return;
-    }
-    
-    // Garante que o valor seja pelo menos 0
-    const novoValor = Math.max(0, valor);
-    
-    setPaginas(prev => ({...prev, [categoria]: novoValor}));
-  };
-  
-  // Função para determinar automaticamente o serviço apropriado com base na quantidade de páginas
-  const determinarServicoComBaseEmPaginas = useCallback((categoria) => {
-    const qtdPaginas = paginas[categoria];
-    
-    if (qtdPaginas <= 0) {
-      // Se não houver páginas, seleciona o serviço "não querer"
-      const servicoNaoQuerer = SERVICOS.find(s => 
-        s.categoria === categoria && s.tipo === "fixo" && s.valor === 0
-      );
-      
-      selecionarServico(categoria, servicoNaoQuerer);
-      return;
-    }
-    
-    // Encontra o serviço adequado para a quantidade de páginas
-    const servicoAdequado = SERVICOS.find(s => 
-      s.categoria === categoria && s.tipo === "porPagina" && 
-      qtdPaginas >= s.minPaginas && qtdPaginas <= s.maxPaginas
-    );
-    
-    if (servicoAdequado) {
-      selecionarServico(categoria, servicoAdequado);
-    }
-  }, [paginas, selecionarServico]);
-  
-  // Efeito para determinar automaticamente o serviço adequado com base nas páginas
-  useEffect(() => {
-    if (paginas.leitura > 0) {
-      determinarServicoComBaseEmPaginas('leitura');
-    }
-  }, [paginas.leitura, determinarServicoComBaseEmPaginas]);
-  
-  useEffect(() => {
-    if (paginas.formatacao > 0) {
-      determinarServicoComBaseEmPaginas('formatacao');
-    }
-  }, [paginas.formatacao, determinarServicoComBaseEmPaginas]);
   
   // Efeito para calcular o valor total e atualizar os itens do orçamento
   useEffect(() => {
@@ -338,129 +291,256 @@ const CalculadoraDeLeve = () => {
           </div>
         )}
         
-        {/* Serviços de Leitura Crítica */}
+        {/* Serviços de Leitura Crítica (modificado com abordagem direta) */}
         {categoria.id === 'leitura' && (
           <div className="space-y-4">
             {/* Opção "não querer" */}
-            {servicos
-              .filter(s => s.tipo === "fixo")
-              .map(servico => {
-                const selecionado = servicosSelecionados.leitura?.id === servico.id;
-                
-                return (
-                  <div 
-                    key={servico.id} 
-                    className={`border rounded-lg p-4 bg-white shadow-sm cursor-pointer ${
-                      selecionado ? 'border-indigo-600' : ''
-                    }`}
-                    onClick={() => selecionarServico('leitura', servico)}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <div 
-                          className={`w-6 h-6 rounded-full mr-3 flex items-center justify-center border ${
-                            selecionado ? 'border-indigo-600 bg-indigo-600 text-white' : 'border-gray-300'
-                          }`}
-                        >
-                          {selecionado && <Check size={14} />}
-                        </div>
-                        <span className={selecionado ? 'font-medium' : ''}>{servico.nome}</span>
-                      </div>
-                      <span className="font-medium">R$ {servico.valor.toFixed(2)}</span>
-                    </div>
-                  </div>
-                );
-              })
-            }
-            
-            {/* Opção com entrada de páginas */}
             <div 
-              className={`border rounded-lg p-4 bg-white shadow-sm ${
-                servicosSelecionados.leitura && servicosSelecionados.leitura.tipo === "porPagina" 
-                  ? 'border-indigo-600' 
-                  : ''
+              className={`border rounded-lg p-4 bg-white shadow-sm cursor-pointer ${
+                servicosSelecionados.leitura?.id === 12 ? 'border-indigo-600' : ''
               }`}
+              onClick={() => selecionarServico('leitura', SERVICOS.find(s => s.id === 12))}
             >
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <div 
                     className={`w-6 h-6 rounded-full mr-3 flex items-center justify-center border ${
-                      servicosSelecionados.leitura && servicosSelecionados.leitura.tipo === "porPagina" 
-                        ? 'border-indigo-600 bg-indigo-600 text-white' 
-                        : 'border-gray-300'
+                      servicosSelecionados.leitura?.id === 12 ? 'border-indigo-600 bg-indigo-600 text-white' : 'border-gray-300'
                     }`}
                   >
-                    {servicosSelecionados.leitura && servicosSelecionados.leitura.tipo === "porPagina" && (
-                      <Check size={14} />
-                    )}
+                    {servicosSelecionados.leitura?.id === 12 && <Check size={14} />}
                   </div>
-                  <span 
-                    className={servicosSelecionados.leitura && servicosSelecionados.leitura.tipo === "porPagina" ? 'font-medium' : ''}
-                  >
-                    Leitura crítica
+                  <span className={servicosSelecionados.leitura?.id === 12 ? 'font-medium' : ''}>
+                    Não vão querer leitura crítica
                   </span>
-                  
-                  <div 
-                    className="relative ml-2"
-                    onMouseEnter={() => setShowTooltip(prev => ({...prev, leitura: true}))}
-                    onMouseLeave={() => setShowTooltip(prev => ({...prev, leitura: false}))}
-                  >
-                    <span className="cursor-help text-indigo-600 font-bold">?</span>
-                    {showTooltip.leitura && (
-                      <div className="absolute z-10 w-72 bg-gray-800 text-white text-sm rounded p-2 -left-20 top-6">
-                        <p className="text-xs">Preços por página:</p>
-                        <ul className="text-xs mt-1">
-                          {servicos
-                            .filter(s => s.tipo === "porPagina")
-                            .map(s => (
-                              <li key={s.id}>
-                                {s.nome.replace('Leitura crítica ', '')}: R$ {s.valorPorPagina.toFixed(2)}
-                              </li>
-                            ))
-                          }
-                        </ul>
-                      </div>
-                    )}
-                  </div>
                 </div>
-                
-                {servicosSelecionados.leitura && servicosSelecionados.leitura.tipo === "porPagina" && (
-                  <span className="font-medium">
-                    R$ {(servicosSelecionados.leitura.valorPorPagina * paginas.leitura).toFixed(2)}
+                <span className="font-medium">R$ 0,00</span>
+              </div>
+            </div>
+            
+            {/* Opção até 25 páginas */}
+            <div 
+              className={`border rounded-lg p-4 bg-white shadow-sm cursor-pointer ${
+                servicosSelecionados.leitura?.id === 13 ? 'border-indigo-600' : ''
+              }`}
+            >
+              <div 
+                className="flex items-center justify-between mb-3"
+                onClick={() => selecionarServico('leitura', SERVICOS.find(s => s.id === 13))}
+              >
+                <div className="flex items-center">
+                  <div 
+                    className={`w-6 h-6 rounded-full mr-3 flex items-center justify-center border ${
+                      servicosSelecionados.leitura?.id === 13 ? 'border-indigo-600 bg-indigo-600 text-white' : 'border-gray-300'
+                    }`}
+                  >
+                    {servicosSelecionados.leitura?.id === 13 && <Check size={14} />}
+                  </div>
+                  <span className={servicosSelecionados.leitura?.id === 13 ? 'font-medium' : ''}>
+                    Leitura crítica (até 25 páginas)
                   </span>
-                )}
+                </div>
+                <span className="font-medium">
+                  R$ 13,50 a página
+                </span>
               </div>
               
-              <div className="ml-9 flex items-center space-x-3">
-                <span className="text-sm text-gray-600">Número de páginas:</span>
-                <input
-                  type="number"
-                  min="0"
-                  value={paginas.leitura}
-                  onChange={(e) => alterarPaginas('leitura', parseInt(e.target.value || 0))}
-                  onClick={() => {
-                    // Se não houver serviço selecionado, seleciona o primeiro serviço por página
-                    if (!servicosSelecionados.leitura || servicosSelecionados.leitura.tipo !== "porPagina") {
-                      const primeiroServicoPorPagina = servicos.find(s => s.tipo === "porPagina");
-                      if (primeiroServicoPorPagina) {
-                        selecionarServico('leitura', primeiroServicoPorPagina);
-                      }
-                    }
-                  }}
-                  className={`w-20 border rounded py-1 px-2 text-center ${
-                    !servicosSelecionados.leitura || servicosSelecionados.leitura.valor === 0 
-                      ? 'bg-gray-100' 
-                      : ''
-                  }`}
-                  disabled={!servicosSelecionados.leitura || servicosSelecionados.leitura.valor === 0}
-                />
-                
-                {servicosSelecionados.leitura && servicosSelecionados.leitura.tipo === "porPagina" && (
+              {servicosSelecionados.leitura?.id === 13 && (
+                <div className="ml-9 flex items-center space-x-3">
+                  <span className="text-sm text-gray-600">Número de páginas:</span>
+                  <input
+                    type="number"
+                    min="1"
+                    max="25"
+                    value={paginas.leitura}
+                    onChange={(e) => setPaginas({...paginas, leitura: Math.min(25, Math.max(1, parseInt(e.target.value) || 1))})}
+                    className="w-20 border rounded py-1 px-2 text-center"
+                  />
                   <span className="text-sm text-gray-600">
-                    a R$ {servicosSelecionados.leitura.valorPorPagina.toFixed(2)} cada página
+                    (min: 1, max: 25)
                   </span>
-                )}
+                </div>
+              )}
+            </div>
+            
+            {/* Opção 25 a 50 páginas */}
+            <div 
+              className={`border rounded-lg p-4 bg-white shadow-sm cursor-pointer ${
+                servicosSelecionados.leitura?.id === 14 ? 'border-indigo-600' : ''
+              }`}
+            >
+              <div 
+                className="flex items-center justify-between mb-3"
+                onClick={() => selecionarServico('leitura', SERVICOS.find(s => s.id === 14))}
+              >
+                <div className="flex items-center">
+                  <div 
+                    className={`w-6 h-6 rounded-full mr-3 flex items-center justify-center border ${
+                      servicosSelecionados.leitura?.id === 14 ? 'border-indigo-600 bg-indigo-600 text-white' : 'border-gray-300'
+                    }`}
+                  >
+                    {servicosSelecionados.leitura?.id === 14 && <Check size={14} />}
+                  </div>
+                  <span className={servicosSelecionados.leitura?.id === 14 ? 'font-medium' : ''}>
+                    Leitura crítica (de 25 a 50 páginas)
+                  </span>
+                </div>
+                <span className="font-medium">
+                  R$ 11,50 a página
+                </span>
               </div>
+              
+              {servicosSelecionados.leitura?.id === 14 && (
+                <div className="ml-9 flex items-center space-x-3">
+                  <span className="text-sm text-gray-600">Número de páginas:</span>
+                  <input
+                    type="number"
+                    min="25"
+                    max="50"
+                    value={paginas.leitura}
+                    onChange={(e) => setPaginas({...paginas, leitura: Math.min(50, Math.max(25, parseInt(e.target.value) || 25))})}
+                    className="w-20 border rounded py-1 px-2 text-center"
+                  />
+                  <span className="text-sm text-gray-600">
+                    (min: 25, max: 50)
+                  </span>
+                </div>
+              )}
+            </div>
+            
+            {/* Opção 50 a 75 páginas */}
+            <div 
+              className={`border rounded-lg p-4 bg-white shadow-sm cursor-pointer ${
+                servicosSelecionados.leitura?.id === 15 ? 'border-indigo-600' : ''
+              }`}
+            >
+              <div 
+                className="flex items-center justify-between mb-3"
+                onClick={() => selecionarServico('leitura', SERVICOS.find(s => s.id === 15))}
+              >
+                <div className="flex items-center">
+                  <div 
+                    className={`w-6 h-6 rounded-full mr-3 flex items-center justify-center border ${
+                      servicosSelecionados.leitura?.id === 15 ? 'border-indigo-600 bg-indigo-600 text-white' : 'border-gray-300'
+                    }`}
+                  >
+                    {servicosSelecionados.leitura?.id === 15 && <Check size={14} />}
+                  </div>
+                  <span className={servicosSelecionados.leitura?.id === 15 ? 'font-medium' : ''}>
+                    Leitura crítica (de 50 a 75 páginas)
+                  </span>
+                </div>
+                <span className="font-medium">
+                  R$ 9,50 a página
+                </span>
+              </div>
+              
+              {servicosSelecionados.leitura?.id === 15 && (
+                <div className="ml-9 flex items-center space-x-3">
+                  <span className="text-sm text-gray-600">Número de páginas:</span>
+                  <input
+                    type="number"
+                    min="50"
+                    max="75"
+                    value={paginas.leitura}
+                    onChange={(e) => setPaginas({...paginas, leitura: Math.min(75, Math.max(50, parseInt(e.target.value) || 50))})}
+                    className="w-20 border rounded py-1 px-2 text-center"
+                  />
+                  <span className="text-sm text-gray-600">
+                    (min: 50, max: 75)
+                  </span>
+                </div>
+              )}
+            </div>
+            
+            {/* Opção 75 a 100 páginas */}
+            <div 
+              className={`border rounded-lg p-4 bg-white shadow-sm cursor-pointer ${
+                servicosSelecionados.leitura?.id === 16 ? 'border-indigo-600' : ''
+              }`}
+            >
+              <div 
+                className="flex items-center justify-between mb-3"
+                onClick={() => selecionarServico('leitura', SERVICOS.find(s => s.id === 16))}
+              >
+                <div className="flex items-center">
+                  <div 
+                    className={`w-6 h-6 rounded-full mr-3 flex items-center justify-center border ${
+                      servicosSelecionados.leitura?.id === 16 ? 'border-indigo-600 bg-indigo-600 text-white' : 'border-gray-300'
+                    }`}
+                  >
+                    {servicosSelecionados.leitura?.id === 16 && <Check size={14} />}
+                  </div>
+                  <span className={servicosSelecionados.leitura?.id === 16 ? 'font-medium' : ''}>
+                    Leitura crítica (de 75 a 100 páginas)
+                  </span>
+                </div>
+                <span className="font-medium">
+                  R$ 7,50 a página
+                </span>
+              </div>
+              
+              {servicosSelecionados.leitura?.id === 16 && (
+                <div className="ml-9 flex items-center space-x-3">
+                  <span className="text-sm text-gray-600">Número de páginas:</span>
+                  <input
+                    type="number"
+                    min="75"
+                    max="100"
+                    value={paginas.leitura}
+                    onChange={(e) => setPaginas({...paginas, leitura: Math.min(100, Math.max(75, parseInt(e.target.value) || 75))})}
+                    className="w-20 border rounded py-1 px-2 text-center"
+                  />
+                  <span className="text-sm text-gray-600">
+                    (min: 75, max: 100)
+                  </span>
+                </div>
+              )}
+            </div>
+            
+            {/* Opção 100 a 300 páginas */}
+            <div 
+              className={`border rounded-lg p-4 bg-white shadow-sm cursor-pointer ${
+                servicosSelecionados.leitura?.id === 17 ? 'border-indigo-600' : ''
+              }`}
+            >
+              <div 
+                className="flex items-center justify-between mb-3"
+                onClick={() => selecionarServico('leitura', SERVICOS.find(s => s.id === 17))}
+              >
+                <div className="flex items-center">
+                  <div 
+                    className={`w-6 h-6 rounded-full mr-3 flex items-center justify-center border ${
+                      servicosSelecionados.leitura?.id === 17 ? 'border-indigo-600 bg-indigo-600 text-white' : 'border-gray-300'
+                    }`}
+                  >
+                    {servicosSelecionados.leitura?.id === 17 && <Check size={14} />}
+                  </div>
+                  <span className={servicosSelecionados.leitura?.id === 17 ? 'font-medium' : ''}>
+                    Leitura crítica (de 100 a 300 páginas)
+                  </span>
+                </div>
+                <span className="font-medium">
+                  R$ 5,50 a página
+                </span>
+              </div>
+              
+              {servicosSelecionados.leitura?.id === 17 && (
+                <div className="ml-9 flex items-center space-x-3">
+                  <span className="text-sm text-gray-600">Número de páginas:</span>
+                  <input
+                    type="number"
+                    min="100"
+                    max="300"
+                    value={paginas.leitura}
+                    onChange={(e) => setPaginas({...paginas, leitura: Math.min(300, Math.max(100, parseInt(e.target.value) || 100))})}
+                    className="w-20 border rounded py-1 px-2 text-center"
+                  />
+                  <span className="text-sm text-gray-600">
+                    (min: 100, max: 300)
+                  </span>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -501,94 +581,66 @@ const CalculadoraDeLeve = () => {
             }
             
             {/* Opção com entrada de páginas */}
-            <div 
-              className={`border rounded-lg p-4 bg-white shadow-sm ${
-                servicosSelecionados.formatacao && servicosSelecionados.formatacao.tipo === "porPagina" 
-                  ? 'border-indigo-600' 
-                  : ''
-              }`}
-            >
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center">
+            {servicos
+              .filter(s => s.tipo === "porPagina")
+              .map(servico => {
+                const selecionado = servicosSelecionados.formatacao?.id === servico.id;
+                
+                return (
                   <div 
-                    className={`w-6 h-6 rounded-full mr-3 flex items-center justify-center border ${
-                      servicosSelecionados.formatacao && servicosSelecionados.formatacao.tipo === "porPagina" 
-                        ? 'border-indigo-600 bg-indigo-600 text-white' 
-                        : 'border-gray-300'
+                    key={servico.id} 
+                    className={`border rounded-lg p-4 bg-white shadow-sm ${
+                      selecionado ? 'border-indigo-600' : ''
                     }`}
                   >
-                    {servicosSelecionados.formatacao && servicosSelecionados.formatacao.tipo === "porPagina" && (
-                      <Check size={14} />
-                    )}
-                  </div>
-                  <span 
-                    className={servicosSelecionados.formatacao && servicosSelecionados.formatacao.tipo === "porPagina" ? 'font-medium' : ''}
-                  >
-                    Formatação ABNT
-                  </span>
-                  
-                  <div 
-                    className="relative ml-2"
-                    onMouseEnter={() => setShowTooltip(prev => ({...prev, formatacao: true}))}
-                    onMouseLeave={() => setShowTooltip(prev => ({...prev, formatacao: false}))}
-                  >
-                    <span className="cursor-help text-indigo-600 font-bold">?</span>
-                    {showTooltip.formatacao && (
-                      <div className="absolute z-10 w-72 bg-gray-800 text-white text-sm rounded p-2 -left-20 top-6">
-                        <p className="text-xs">Preços por página:</p>
-                        <ul className="text-xs mt-1">
-                          {servicos
-                            .filter(s => s.tipo === "porPagina")
-                            .map(s => (
-                              <li key={s.id}>
-                                {s.nome.replace('Formatação ABNT ', '')}: R$ {s.valorPorPagina.toFixed(2)}
-                              </li>
-                            ))
-                          }
-                        </ul>
+                    <div 
+                      className="flex items-center justify-between mb-3 cursor-pointer"
+                      onClick={() => selecionarServico('formatacao', servico)}
+                    >
+                      <div className="flex items-center">
+                        <div 
+                          className={`w-6 h-6 rounded-full mr-3 flex items-center justify-center border ${
+                            selecionado ? 'border-indigo-600 bg-indigo-600 text-white' : 'border-gray-300'
+                          }`}
+                        >
+                          {selecionado && <Check size={14} />}
+                        </div>
+                        <span className={selecionado ? 'font-medium' : ''}>
+                          {servico.nome}
+                        </span>
+                      </div>
+                      <span className="font-medium">
+                        R$ {servico.valorPorPagina.toFixed(2).replace('.', ',')} a página
+                      </span>
+                    </div>
+                    
+                    {selecionado && (
+                      <div className="ml-9 flex items-center space-x-3">
+                        <span className="text-sm text-gray-600">Número de páginas:</span>
+                        <input
+                          type="number"
+                          min={servico.minPaginas}
+                          max={servico.maxPaginas}
+                          value={paginas.formatacao}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            if (value === '' || isNaN(parseInt(value))) {
+                              setPaginas({...paginas, formatacao: servico.minPaginas});
+                            } else {
+                              setPaginas({...paginas, formatacao: Math.min(servico.maxPaginas, Math.max(servico.minPaginas, parseInt(value)))});
+                            }
+                          }}
+                          className="w-20 border rounded py-1 px-2 text-center"
+                        />
+                        <span className="text-sm text-gray-600">
+                          (min: {servico.minPaginas}, max: {servico.maxPaginas})
+                        </span>
                       </div>
                     )}
                   </div>
-                </div>
-                
-                {servicosSelecionados.formatacao && servicosSelecionados.formatacao.tipo === "porPagina" && (
-                  <span className="font-medium">
-                    R$ {(servicosSelecionados.formatacao.valorPorPagina * paginas.formatacao).toFixed(2)}
-                  </span>
-                )}
-              </div>
-              
-              <div className="ml-9 flex items-center space-x-3">
-                <span className="text-sm text-gray-600">Número de páginas:</span>
-                <input
-                  type="number"
-                  min="0"
-                  value={paginas.formatacao}
-                  onChange={(e) => alterarPaginas('formatacao', parseInt(e.target.value || 0))}
-                  onClick={() => {
-                    // Se não houver serviço selecionado, seleciona o primeiro serviço por página
-                    if (!servicosSelecionados.formatacao || servicosSelecionados.formatacao.tipo !== "porPagina") {
-                      const primeiroServicoPorPagina = servicos.find(s => s.tipo === "porPagina");
-                      if (primeiroServicoPorPagina) {
-                        selecionarServico('formatacao', primeiroServicoPorPagina);
-                      }
-                    }
-                  }}
-                  className={`w-20 border rounded py-1 px-2 text-center ${
-                    !servicosSelecionados.formatacao || servicosSelecionados.formatacao.valor === 0 
-                      ? 'bg-gray-100' 
-                      : ''
-                  }`}
-                  disabled={!servicosSelecionados.formatacao || servicosSelecionados.formatacao.valor === 0}
-                />
-                
-                {servicosSelecionados.formatacao && servicosSelecionados.formatacao.tipo === "porPagina" && (
-                  <span className="text-sm text-gray-600">
-                    a R$ {servicosSelecionados.formatacao.valorPorPagina.toFixed(2)} cada página
-                  </span>
-                )}
-              </div>
-            </div>
+                );
+              })
+            }
           </div>
         )}
       </div>
