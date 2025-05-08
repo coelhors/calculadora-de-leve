@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+# Calculadora De Leve
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Calculadora de orçamentos para serviços de mentoria acadêmica da empresa "De Leve na Tese".
 
-## Available Scripts
+## Sobre o Projeto
 
-In the project directory, you can run:
+Este projeto foi criado para a empresa "De Leve na Tese", um serviço de mentoria acadêmica. A calculadora permite que os clientes selecionem serviços e visualizem um orçamento em tempo real.
 
-### `npm start`
+## Funcionalidades
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Seleção de serviços de mentoria
+- Escolha de períodos de acompanhamento
+- Cálculo de valores para leitura crítica e formatação ABNT baseado no número de páginas
+- Resumo detalhado do orçamento
+- Interface responsiva e amigável
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tecnologias Utilizadas
 
-### `npm test`
+- React.js
+- Tailwind CSS (via CDN ou instalação completa)
+- Lucide React (para ícones)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Como Executar o Projeto
 
-### `npm run build`
+1. Clone o repositório:
+   ```
+   git clone https://github.com/coelhors/calculadora-de-leve.git
+   cd calculadora-de-leve
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Instale as dependências:
+   ```
+   npm install
+   npm install lucide-react
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Execute o projeto:
+   ```
+   npm start
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Acesse o aplicativo em:
+   ```
+   http://localhost:3000
+   ```
 
-### `npm run eject`
+## Estrutura de Arquivos
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+calculadora-de-leve/
+├── public/
+│   ├── index.html (com link para o CDN do Tailwind)
+│   └── ...
+├── src/
+│   ├── components/
+│   │   └── CalculadoraDeLeve.js
+│   ├── App.js
+│   ├── App.css
+│   ├── index.js
+│   └── index.css
+├── tailwind.config.js (opcional, se usar instalação completa)
+├── postcss.config.js (opcional, se usar instalação completa)
+├── package.json
+└── README.md
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Como Personalizar
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Informações de Contato
+Atualize as informações de contato no rodapé do componente CalculadoraDeLeve:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```javascript
+<div className="mt-4 bg-indigo-50 p-4 rounded-lg border border-indigo-100 text-center">
+  <p className="text-sm text-indigo-700">
+    <strong>De Leve na Tese</strong> - Mentoria Acadêmica
+  </p>
+  <p className="text-xs text-indigo-600 mt-1">
+    Contato: seucontato@exemplo.com | (00) 00000-0000
+  </p>
+</div>
+```
 
-## Learn More
+### Cores
+Você pode personalizar as cores editando as classes do Tailwind no componente. Por exemplo, para mudar a cor principal de índigo para azul, substitua classes como `bg-indigo-600` por `bg-blue-600`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Próximos Passos
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Implementar envio do orçamento por e-mail
+- Adicionar autenticação de usuários
+- Desenvolver área administrativa para gerenciar serviços e preços
+- Implementar backend para armazenar orçamentos
