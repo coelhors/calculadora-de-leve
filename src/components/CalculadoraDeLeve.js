@@ -200,6 +200,24 @@ const CalculadoraDeLeve = () => {
     navigate('/resumo');
   };
   
+  // Função para validar número de páginas ao perder o foco
+  const validarPaginas = (categoria, min, max) => {
+    let valor = paginas[categoria];
+    
+    // Se estiver vazio ou não for um número, use o mínimo
+    if (valor === '' || isNaN(valor)) {
+      setPaginas(prev => ({...prev, [categoria]: min}));
+    } 
+    // Se for menor que o mínimo, use o mínimo
+    else if (valor < min) {
+      setPaginas(prev => ({...prev, [categoria]: min}));
+    } 
+    // Se for maior que o máximo, use o máximo
+    else if (valor > max) {
+      setPaginas(prev => ({...prev, [categoria]: max}));
+    }
+  };
+  
   // Renderizar serviços para uma categoria específica
   const renderizarServicos = (categoria) => {
     const servicos = SERVICOS.filter(s => s.categoria === categoria.id);
@@ -353,7 +371,12 @@ const CalculadoraDeLeve = () => {
                     min="1"
                     max="25"
                     value={paginas.leitura}
-                    onChange={(e) => setPaginas({...paginas, leitura: Math.min(25, Math.max(1, parseInt(e.target.value) || 1))})}
+                    onChange={(e) => {
+                      // Permite qualquer entrada, mesmo temporariamente inválida
+                      const valor = e.target.value === '' ? '' : parseInt(e.target.value);
+                      setPaginas({...paginas, leitura: valor});
+                    }}
+                    onBlur={() => validarPaginas('leitura', 1, 25)}
                     className="w-20 border rounded py-1 px-2 text-center"
                   />
                   <span className="text-sm text-gray-600">
@@ -398,7 +421,11 @@ const CalculadoraDeLeve = () => {
                     min="25"
                     max="50"
                     value={paginas.leitura}
-                    onChange={(e) => setPaginas({...paginas, leitura: Math.min(50, Math.max(25, parseInt(e.target.value) || 25))})}
+                    onChange={(e) => {
+                      const valor = e.target.value === '' ? '' : parseInt(e.target.value);
+                      setPaginas({...paginas, leitura: valor});
+                    }}
+                    onBlur={() => validarPaginas('leitura', 25, 50)}
                     className="w-20 border rounded py-1 px-2 text-center"
                   />
                   <span className="text-sm text-gray-600">
@@ -443,7 +470,11 @@ const CalculadoraDeLeve = () => {
                     min="50"
                     max="75"
                     value={paginas.leitura}
-                    onChange={(e) => setPaginas({...paginas, leitura: Math.min(75, Math.max(50, parseInt(e.target.value) || 50))})}
+                    onChange={(e) => {
+                      const valor = e.target.value === '' ? '' : parseInt(e.target.value);
+                      setPaginas({...paginas, leitura: valor});
+                    }}
+                    onBlur={() => validarPaginas('leitura', 50, 75)}
                     className="w-20 border rounded py-1 px-2 text-center"
                   />
                   <span className="text-sm text-gray-600">
@@ -488,7 +519,11 @@ const CalculadoraDeLeve = () => {
                     min="75"
                     max="100"
                     value={paginas.leitura}
-                    onChange={(e) => setPaginas({...paginas, leitura: Math.min(100, Math.max(75, parseInt(e.target.value) || 75))})}
+                    onChange={(e) => {
+                      const valor = e.target.value === '' ? '' : parseInt(e.target.value);
+                      setPaginas({...paginas, leitura: valor});
+                    }}
+                    onBlur={() => validarPaginas('leitura', 75, 100)}
                     className="w-20 border rounded py-1 px-2 text-center"
                   />
                   <span className="text-sm text-gray-600">
@@ -533,7 +568,11 @@ const CalculadoraDeLeve = () => {
                     min="100"
                     max="300"
                     value={paginas.leitura}
-                    onChange={(e) => setPaginas({...paginas, leitura: Math.min(300, Math.max(100, parseInt(e.target.value) || 100))})}
+                    onChange={(e) => {
+                      const valor = e.target.value === '' ? '' : parseInt(e.target.value);
+                      setPaginas({...paginas, leitura: valor});
+                    }}
+                    onBlur={() => validarPaginas('leitura', 100, 300)}
                     className="w-20 border rounded py-1 px-2 text-center"
                   />
                   <span className="text-sm text-gray-600">
@@ -623,13 +662,10 @@ const CalculadoraDeLeve = () => {
                           max={servico.maxPaginas}
                           value={paginas.formatacao}
                           onChange={(e) => {
-                            const value = e.target.value;
-                            if (value === '' || isNaN(parseInt(value))) {
-                              setPaginas({...paginas, formatacao: servico.minPaginas});
-                            } else {
-                              setPaginas({...paginas, formatacao: Math.min(servico.maxPaginas, Math.max(servico.minPaginas, parseInt(value)))});
-                            }
+                            const valor = e.target.value === '' ? '' : parseInt(e.target.value);
+                            setPaginas({...paginas, formatacao: valor});
                           }}
+                          onBlur={() => validarPaginas('formatacao', servico.minPaginas, servico.maxPaginas)}
                           className="w-20 border rounded py-1 px-2 text-center"
                         />
                         <span className="text-sm text-gray-600">
