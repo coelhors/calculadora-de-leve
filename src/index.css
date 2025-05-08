@@ -31,3 +31,56 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+button, 
+input, 
+select, 
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Estilos para telas de tamanho médio e acima */
+@media (min-width: 768px) {
+  .md\:sticky {
+    position: sticky;
+  }
+  
+  .md\:top-4 {
+    top: 1rem;
+  }
+}
+
+/* Estilos específicos para impressão */
+@media print {
+  @page {
+    margin: 2cm;
+  }
+  
+  body {
+    font-size: 12pt;
+  }
+  
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+  
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+}

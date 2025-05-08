@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Plus, Minus, Check, Calculator } from 'lucide-react';
+import { Plus, Minus, Check } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 // Dados dos serviços
 const SERVICOS = [
@@ -40,6 +41,8 @@ const CATEGORIAS = [
 ];
 
 const CalculadoraDeLeve = () => {
+  const navigate = useNavigate();
+  
   // Estado para armazenar serviços selecionados
   const [servicosSelecionados, setServicosSelecionados] = useState({
     mentoria: [],
@@ -226,6 +229,23 @@ const CalculadoraDeLeve = () => {
     setValorTotal(valorTotal);
     setItensOrcamento(itens);
   }, [servicosSelecionados, paginas]);
+  
+  // Função para lidar com o clique no botão "Gerar Orçamento"
+  const handleGerarOrcamento = () => {
+    if (itensOrcamento.length === 0) {
+      alert("Por favor, selecione pelo menos um serviço para gerar o orçamento.");
+      return;
+    }
+    
+    // Armazenar dados do orçamento no sessionStorage para recuperar na próxima página
+    sessionStorage.setItem('orcamento', JSON.stringify({
+      itens: itensOrcamento,
+      valorTotal: valorTotal
+    }));
+    
+    // Redirecionar para a página de resumo
+    navigate('/resumo');
+  };
   
   // Renderizar serviços para uma categoria específica
   const renderizarServicos = (categoria) => {
@@ -587,62 +607,17 @@ const CalculadoraDeLeve = () => {
         {CATEGORIAS.map(categoria => renderizarServicos(categoria))}
       </div>
       
-      {/* Resumo do Orçamento (ao final da página) */}
+      {/* Botão para gerar orçamento */}
       <div className="bg-white p-6 rounded-lg shadow-lg border border-indigo-100 mb-8">
-        <div className="flex items-center mb-4 text-indigo-800">
-          <Calculator className="mr-2" />
-          <h2 className="text-xl font-bold">Resumo do Orçamento</h2>
-        </div>
-        
-        {itensOrcamento.length > 0 ? (
-          <>
-            <div className="divide-y">
-              {itensOrcamento.map((item, index) => (
-                <div key={index} className="py-3 flex justify-between">
-                  <span className="text-gray-700">{item.nome}</span>
-                  <span className="font-medium">R$ {item.valor.toFixed(2)}</span>
-                </div>
-              ))}
-            </div>
-            
-            <div className="py-4 flex justify-between font-bold text-lg border-t-2 border-indigo-200 mt-2">
-              <span>Total</span>
-              <span className="text-indigo-800">R$ {valorTotal.toFixed(2)}</span>
-            </div>
-          </>
-        ) : (
-          <div className="py-8 text-center text-gray-500">
-            <p>Selecione os serviços desejados para visualizar o orçamento</p>
-          </div>
-        )}
-        
-        <div className="mt-6">
-          <button 
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition"
-            onClick={() => {
-              if (itensOrcamento.length === 0) {
-                alert("Por favor, selecione pelo menos um serviço para gerar o orçamento.");
-                return;
-              }
-              
-              alert("Orçamento gerado com sucesso!\n\nTotal: R$ " + valorTotal.toFixed(2));
-              // Aqui você pode implementar o envio do orçamento por email, etc.
-            }}
-          >
-            Gerar Orçamento
-          </button>
-        </div>
+        <button 
+          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition"
+          onClick={handleGerarOrcamento}
+        >
+          Gerar Orçamento
+        </button>
       </div>
       
-      {/* Rodapé */}
-      <div className="bg-indigo-50 p-4 rounded-lg border border-indigo-100 text-center mb-8">
-        <p className="text-sm text-indigo-700">
-          <strong>De Leve na Tese</strong> - Mentoria Acadêmica
-        </p>
-        <p className="text-xs text-indigo-600 mt-1">
-          Contato: deleve@exemplo.com | (00) 00000-0000
-        </p>
-      </div>
+      {/* Rodapé removido conforme solicitado */}
     </div>
   );
 };
