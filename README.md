@@ -25,17 +25,18 @@ Este projeto foi criado para a empresa "De Leve na Tese", um serviço de mentori
 ```
 calculadora-de-leve/
 ├── public/
-│   ├── index.html (com link para o CDN do Tailwind)
+│   ├── index.html
 │   └── ...
 ├── src/
 │   ├── components/
-│   │   └── CalculadoraDeLeve.js
+│   │   ├── CalculadoraDeLeve.js
+|   |   └── ResumoOrcamento.js
 │   ├── App.js
 │   ├── App.css
 │   ├── index.js
 │   └── index.css
-├── tailwind.config.js (opcional, se usar instalação completa)
-├── postcss.config.js (opcional, se usar instalação completa)
+├── tailwind.config.js
+├── postcss.config.js
 ├── package.json
 └── README.md
 ```
