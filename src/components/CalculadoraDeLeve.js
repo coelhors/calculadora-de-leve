@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 // Dados dos serviços
 const SERVICOS = [
   { id: 1, nome: "Encontro de mentoria (45 minutos)", valor: 180.00, tipo: "fixo", categoria: "mentoria" },
-  { id: 2, nome: "Encontro de mentoria (1h30)", valor: 307.00, tipo: "fixo", categoria: "mentoria" },
+  { id: 2, nome: "Encontro de mentoria (1 hora e 30 minutos)", valor: 307.00, tipo: "fixo", categoria: "mentoria" },
   
   { id: 3, nome: "Período de acompanhamento (15 dias)", valor: 75.00, tipo: "base", categoria: "acompanhamento" },
   { id: 4, nome: "Período de acompanhamento (30 dias)", valor: 100.00, tipo: "base", categoria: "acompanhamento" },
@@ -17,25 +17,25 @@ const SERVICOS = [
   { id: 10, nome: "Período de acompanhamento (120 dias)", valor: 400.00, tipo: "base", categoria: "acompanhamento" },
   { id: 11, nome: "Período de acompanhamento (150 dias)", valor: 500.00, tipo: "base", categoria: "acompanhamento" },
   
-  // Modificado conforme solicitado
+  // Modificado conforme solicitado - ajuste nos intervalos de páginas
   { id: 12, nome: "Não vão querer leitura crítica", valor: 0.00, tipo: "fixo", categoria: "leitura" },
   { id: 13, nome: "Leitura crítica (até 25 páginas)", valorPorPagina: 13.50, tipo: "porPagina", categoria: "leitura", minPaginas: 1, maxPaginas: 25 },
-  { id: 14, nome: "Leitura crítica (de 25 a 50 páginas)", valorPorPagina: 11.50, tipo: "porPagina", categoria: "leitura", minPaginas: 25, maxPaginas: 50 },
-  { id: 15, nome: "Leitura crítica (de 50 a 75 páginas)", valorPorPagina: 9.50, tipo: "porPagina", categoria: "leitura", minPaginas: 50, maxPaginas: 75 },
-  { id: 16, nome: "Leitura crítica (de 75 a 100 páginas)", valorPorPagina: 7.50, tipo: "porPagina", categoria: "leitura", minPaginas: 75, maxPaginas: 100 },
-  { id: 17, nome: "Leitura crítica (de 100 a 300 páginas)", valorPorPagina: 5.50, tipo: "porPagina", categoria: "leitura", minPaginas: 100, maxPaginas: 300 },
+  { id: 14, nome: "Leitura crítica (de 26 a 50 páginas)", valorPorPagina: 11.50, tipo: "porPagina", categoria: "leitura", minPaginas: 26, maxPaginas: 50 },
+  { id: 15, nome: "Leitura crítica (de 51 a 75 páginas)", valorPorPagina: 9.50, tipo: "porPagina", categoria: "leitura", minPaginas: 51, maxPaginas: 75 },
+  { id: 16, nome: "Leitura crítica (de 76 a 100 páginas)", valorPorPagina: 7.50, tipo: "porPagina", categoria: "leitura", minPaginas: 76, maxPaginas: 100 },
+  { id: 17, nome: "Leitura crítica (de 101 a 300 páginas)", valorPorPagina: 5.50, tipo: "porPagina", categoria: "leitura", minPaginas: 101, maxPaginas: 300 },
   
-  { id: 18, nome: "Formatação (se o cliente não quiser Formatação)", valor: 0.00, tipo: "fixo", categoria: "formatacao" },
+  { id: 18, nome: "Não vou querer formatação ABNT", valor: 0.00, tipo: "fixo", categoria: "formatacao" },
   { id: 19, nome: "Formatação ABNT (até 25 páginas)", valorPorPagina: 8.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 1, maxPaginas: 25 },
-  { id: 20, nome: "Formatação ABNT (de 25 a 50 páginas)", valorPorPagina: 7.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 26, maxPaginas: 50 },
-  { id: 21, nome: "Formatação ABNT (de 50 a 75 páginas)", valorPorPagina: 6.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 51, maxPaginas: 75 },
-  { id: 22, nome: "Formatação ABNT (de 75 a 100 páginas)", valorPorPagina: 5.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 76, maxPaginas: 100 },
-  { id: 23, nome: "Formatação ABNT (de 100 a 300 páginas)", valorPorPagina: 4.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 101, maxPaginas: 300 }
+  { id: 20, nome: "Formatação ABNT (entre 26 e 50 páginas)", valorPorPagina: 7.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 26, maxPaginas: 50 },
+  { id: 21, nome: "Formatação ABNT (entre 51 e 75 páginas)", valorPorPagina: 6.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 51, maxPaginas: 75 },
+  { id: 22, nome: "Formatação ABNT (entre 76 e 100 páginas)", valorPorPagina: 5.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 76, maxPaginas: 100 },
+  { id: 23, nome: "Formatação ABNT (entre 101 e 300 páginas)", valorPorPagina: 4.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 101, maxPaginas: 300 }
 ];
 
 // Categorias de serviços
 const CATEGORIAS = [
-  { id: "mentoria", nome: "Mentoria", multi: true },
+  { id: "mentoria", nome: "Encontros de Mentoria", multi: true },
   { id: "acompanhamento", nome: "Período de Acompanhamento", multi: false },
   { id: "leitura", nome: "Leitura Crítica", multi: false },
   { id: "formatacao", nome: "Formatação ABNT", multi: false }
@@ -247,7 +247,7 @@ const CalculadoraDeLeve = () => {
                       </button>
                       <span className={selecionado ? 'font-medium' : ''}>{servico.nome}</span>
                     </div>
-                    <span className="font-medium">R$ {servico.valor.toFixed(2)}</span>
+                    <span className="font-medium">R$ {servico.valor.toFixed(2).replace('.', ',')} cada</span>
                   </div>
                   
                   {selecionado && (
@@ -301,7 +301,7 @@ const CalculadoraDeLeve = () => {
                       </div>
                       <span className={selecionado ? 'font-medium' : ''}>{servico.nome}</span>
                     </div>
-                    <span className="font-medium">R$ {servico.valor.toFixed(2)}</span>
+                                          <span className="font-medium">R$ {servico.valor.toFixed(2).replace('.', ',')}</span>
                   </div>
                 </div>
               );
@@ -386,7 +386,7 @@ const CalculadoraDeLeve = () => {
               )}
             </div>
             
-            {/* Opção 25 a 50 páginas */}
+            {/* Opção 26 a 50 páginas */}
             <div 
               className={`border rounded-lg p-4 bg-white shadow-sm cursor-pointer ${
                 servicosSelecionados.leitura?.id === 14 ? 'border-indigo-600' : ''
@@ -405,7 +405,7 @@ const CalculadoraDeLeve = () => {
                     {servicosSelecionados.leitura?.id === 14 && <Check size={14} />}
                   </div>
                   <span className={servicosSelecionados.leitura?.id === 14 ? 'font-medium' : ''}>
-                    Leitura crítica (de 25 a 50 páginas)
+                    Leitura crítica (de 26 a 50 páginas)
                   </span>
                 </div>
                 <span className="font-medium">
@@ -418,24 +418,24 @@ const CalculadoraDeLeve = () => {
                   <span className="text-sm text-gray-600">Número de páginas:</span>
                   <input
                     type="number"
-                    min="25"
+                    min="26"
                     max="50"
                     value={paginas.leitura}
                     onChange={(e) => {
                       const valor = e.target.value === '' ? '' : parseInt(e.target.value);
                       setPaginas({...paginas, leitura: valor});
                     }}
-                    onBlur={() => validarPaginas('leitura', 25, 50)}
+                    onBlur={() => validarPaginas('leitura', 26, 50)}
                     className="w-20 border rounded py-1 px-2 text-center"
                   />
                   <span className="text-sm text-gray-600">
-                    (min: 25, max: 50)
+                    (min: 26, max: 50)
                   </span>
                 </div>
               )}
             </div>
             
-            {/* Opção 50 a 75 páginas */}
+            {/* Opção 51 a 75 páginas */}
             <div 
               className={`border rounded-lg p-4 bg-white shadow-sm cursor-pointer ${
                 servicosSelecionados.leitura?.id === 15 ? 'border-indigo-600' : ''
@@ -454,7 +454,7 @@ const CalculadoraDeLeve = () => {
                     {servicosSelecionados.leitura?.id === 15 && <Check size={14} />}
                   </div>
                   <span className={servicosSelecionados.leitura?.id === 15 ? 'font-medium' : ''}>
-                    Leitura crítica (de 50 a 75 páginas)
+                    Leitura crítica (de 51 a 75 páginas)
                   </span>
                 </div>
                 <span className="font-medium">
@@ -467,24 +467,24 @@ const CalculadoraDeLeve = () => {
                   <span className="text-sm text-gray-600">Número de páginas:</span>
                   <input
                     type="number"
-                    min="50"
+                    min="51"
                     max="75"
                     value={paginas.leitura}
                     onChange={(e) => {
                       const valor = e.target.value === '' ? '' : parseInt(e.target.value);
                       setPaginas({...paginas, leitura: valor});
                     }}
-                    onBlur={() => validarPaginas('leitura', 50, 75)}
+                    onBlur={() => validarPaginas('leitura', 51, 75)}
                     className="w-20 border rounded py-1 px-2 text-center"
                   />
                   <span className="text-sm text-gray-600">
-                    (min: 50, max: 75)
+                    (min: 51, max: 75)
                   </span>
                 </div>
               )}
             </div>
             
-            {/* Opção 75 a 100 páginas */}
+            {/* Opção 76 a 100 páginas */}
             <div 
               className={`border rounded-lg p-4 bg-white shadow-sm cursor-pointer ${
                 servicosSelecionados.leitura?.id === 16 ? 'border-indigo-600' : ''
@@ -503,7 +503,7 @@ const CalculadoraDeLeve = () => {
                     {servicosSelecionados.leitura?.id === 16 && <Check size={14} />}
                   </div>
                   <span className={servicosSelecionados.leitura?.id === 16 ? 'font-medium' : ''}>
-                    Leitura crítica (de 75 a 100 páginas)
+                    Leitura crítica (de 76 a 100 páginas)
                   </span>
                 </div>
                 <span className="font-medium">
@@ -516,24 +516,24 @@ const CalculadoraDeLeve = () => {
                   <span className="text-sm text-gray-600">Número de páginas:</span>
                   <input
                     type="number"
-                    min="75"
+                    min="76"
                     max="100"
                     value={paginas.leitura}
                     onChange={(e) => {
                       const valor = e.target.value === '' ? '' : parseInt(e.target.value);
                       setPaginas({...paginas, leitura: valor});
                     }}
-                    onBlur={() => validarPaginas('leitura', 75, 100)}
+                    onBlur={() => validarPaginas('leitura', 76, 100)}
                     className="w-20 border rounded py-1 px-2 text-center"
                   />
                   <span className="text-sm text-gray-600">
-                    (min: 75, max: 100)
+                    (min: 76, max: 100)
                   </span>
                 </div>
               )}
             </div>
             
-            {/* Opção 100 a 300 páginas */}
+            {/* Opção 101 a 300 páginas */}
             <div 
               className={`border rounded-lg p-4 bg-white shadow-sm cursor-pointer ${
                 servicosSelecionados.leitura?.id === 17 ? 'border-indigo-600' : ''
@@ -552,7 +552,7 @@ const CalculadoraDeLeve = () => {
                     {servicosSelecionados.leitura?.id === 17 && <Check size={14} />}
                   </div>
                   <span className={servicosSelecionados.leitura?.id === 17 ? 'font-medium' : ''}>
-                    Leitura crítica (de 100 a 300 páginas)
+                    Leitura crítica (de 101 a 300 páginas)
                   </span>
                 </div>
                 <span className="font-medium">
@@ -565,18 +565,18 @@ const CalculadoraDeLeve = () => {
                   <span className="text-sm text-gray-600">Número de páginas:</span>
                   <input
                     type="number"
-                    min="100"
+                    min="101"
                     max="300"
                     value={paginas.leitura}
                     onChange={(e) => {
                       const valor = e.target.value === '' ? '' : parseInt(e.target.value);
                       setPaginas({...paginas, leitura: valor});
                     }}
-                    onBlur={() => validarPaginas('leitura', 100, 300)}
+                    onBlur={() => validarPaginas('leitura', 101, 300)}
                     className="w-20 border rounded py-1 px-2 text-center"
                   />
                   <span className="text-sm text-gray-600">
-                    (min: 100, max: 300)
+                    (min: 101, max: 300)
                   </span>
                 </div>
               )}
@@ -612,7 +612,7 @@ const CalculadoraDeLeve = () => {
                         </div>
                         <span className={selecionado ? 'font-medium' : ''}>{servico.nome}</span>
                       </div>
-                      <span className="font-medium">R$ {servico.valor.toFixed(2)}</span>
+                      <span className="font-medium">R$ {servico.valor.toFixed(2).replace('.', ',')}</span>
                     </div>
                   </div>
                 );
