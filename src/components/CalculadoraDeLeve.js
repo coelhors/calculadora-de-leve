@@ -4,33 +4,33 @@ import { useNavigate } from 'react-router-dom';
 
 // Dados dos serviços
 const SERVICOS = [
-  { id: 1, nome: "Encontro de mentoria (45 minutos)", valor: 180.00, tipo: "fixo", categoria: "mentoria" },
-  { id: 2, nome: "Encontro de mentoria (1 hora e 30 minutos)", valor: 307.00, tipo: "fixo", categoria: "mentoria" },
+  { id: 1, nome: "Encontro de mentoria de 45 minutos", valor: 180.00, tipo: "fixo", categoria: "mentoria" },
+  { id: 2, nome: "Encontro de mentoria de 1 hora e 30 minutos", valor: 307.00, tipo: "fixo", categoria: "mentoria" },
   
-  { id: 3, nome: "Período de acompanhamento (15 dias)", valor: 75.00, tipo: "base", categoria: "acompanhamento" },
-  { id: 4, nome: "Período de acompanhamento (30 dias)", valor: 100.00, tipo: "base", categoria: "acompanhamento" },
-  { id: 5, nome: "Período de acompanhamento (45 dias)", valor: 150.00, tipo: "base", categoria: "acompanhamento" },
-  { id: 6, nome: "Período de acompanhamento (60 dias)", valor: 200.00, tipo: "base", categoria: "acompanhamento" },
-  { id: 7, nome: "Período de acompanhamento (75 dias)", valor: 250.00, tipo: "base", categoria: "acompanhamento" },
-  { id: 8, nome: "Período de acompanhamento (90 dias)", valor: 300.00, tipo: "base", categoria: "acompanhamento" },
-  { id: 9, nome: "Período de acompanhamento (100 dias)", valor: 350.00, tipo: "base", categoria: "acompanhamento" },
-  { id: 10, nome: "Período de acompanhamento (120 dias)", valor: 400.00, tipo: "base", categoria: "acompanhamento" },
-  { id: 11, nome: "Período de acompanhamento (150 dias)", valor: 500.00, tipo: "base", categoria: "acompanhamento" },
+  { id: 3, nome: "Período de acompanhamento de 15 dias", valor: 75.00, tipo: "base", categoria: "acompanhamento" },
+  { id: 4, nome: "Período de acompanhamento de 30 dias", valor: 100.00, tipo: "base", categoria: "acompanhamento" },
+  { id: 5, nome: "Período de acompanhamento de 45 dias", valor: 150.00, tipo: "base", categoria: "acompanhamento" },
+  { id: 6, nome: "Período de acompanhamento de 60 dias ", valor: 200.00, tipo: "base", categoria: "acompanhamento" },
+  { id: 7, nome: "Período de acompanhamento de 75 dias", valor: 250.00, tipo: "base", categoria: "acompanhamento" },
+  { id: 8, nome: "Período de acompanhamento de 90 dias", valor: 300.00, tipo: "base", categoria: "acompanhamento" },
+  { id: 9, nome: "Período de acompanhamento de 100 dias", valor: 350.00, tipo: "base", categoria: "acompanhamento" },
+  { id: 10, nome: "Período de acompanhamento de 120 dias", valor: 400.00, tipo: "base", categoria: "acompanhamento" },
+  { id: 11, nome: "Período de acompanhamento de 150 dias", valor: 500.00, tipo: "base", categoria: "acompanhamento" },
   
   // Modificado conforme solicitado - ajuste nos intervalos de páginas
-  { id: 12, nome: "Não vão querer leitura crítica", valor: 0.00, tipo: "fixo", categoria: "leitura" },
-  { id: 13, nome: "Leitura crítica (até 25 páginas)", valorPorPagina: 13.50, tipo: "porPagina", categoria: "leitura", minPaginas: 1, maxPaginas: 25 },
-  { id: 14, nome: "Leitura crítica (de 26 a 50 páginas)", valorPorPagina: 11.50, tipo: "porPagina", categoria: "leitura", minPaginas: 26, maxPaginas: 50 },
-  { id: 15, nome: "Leitura crítica (de 51 a 75 páginas)", valorPorPagina: 9.50, tipo: "porPagina", categoria: "leitura", minPaginas: 51, maxPaginas: 75 },
-  { id: 16, nome: "Leitura crítica (de 76 a 100 páginas)", valorPorPagina: 7.50, tipo: "porPagina", categoria: "leitura", minPaginas: 76, maxPaginas: 100 },
-  { id: 17, nome: "Leitura crítica (de 101 a 300 páginas)", valorPorPagina: 5.50, tipo: "porPagina", categoria: "leitura", minPaginas: 101, maxPaginas: 300 },
+  { id: 12, nome: "Não vou querer leitura crítica", valor: 0.00, tipo: "fixo", categoria: "leitura" },
+  { id: 13, nome: "Leitura crítica de até 25 páginas", valorPorPagina: 13.50, tipo: "porPagina", categoria: "leitura", minPaginas: 1, maxPaginas: 25 },
+  { id: 14, nome: "Leitura crítica de 26 a 50 páginas", valorPorPagina: 11.50, tipo: "porPagina", categoria: "leitura", minPaginas: 26, maxPaginas: 50 },
+  { id: 15, nome: "Leitura crítica de 51 a 75 páginas", valorPorPagina: 9.50, tipo: "porPagina", categoria: "leitura", minPaginas: 51, maxPaginas: 75 },
+  { id: 16, nome: "Leitura crítica de 76 a 100 páginas", valorPorPagina: 7.50, tipo: "porPagina", categoria: "leitura", minPaginas: 76, maxPaginas: 100 },
+  { id: 17, nome: "Leitura crítica de 101 a 300 páginas", valorPorPagina: 5.50, tipo: "porPagina", categoria: "leitura", minPaginas: 101, maxPaginas: 300 },
   
   { id: 18, nome: "Não vou querer formatação ABNT", valor: 0.00, tipo: "fixo", categoria: "formatacao" },
-  { id: 19, nome: "Formatação ABNT (até 25 páginas)", valorPorPagina: 8.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 1, maxPaginas: 25 },
-  { id: 20, nome: "Formatação ABNT (entre 26 e 50 páginas)", valorPorPagina: 7.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 26, maxPaginas: 50 },
-  { id: 21, nome: "Formatação ABNT (entre 51 e 75 páginas)", valorPorPagina: 6.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 51, maxPaginas: 75 },
-  { id: 22, nome: "Formatação ABNT (entre 76 e 100 páginas)", valorPorPagina: 5.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 76, maxPaginas: 100 },
-  { id: 23, nome: "Formatação ABNT (entre 101 e 300 páginas)", valorPorPagina: 4.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 101, maxPaginas: 300 }
+  { id: 19, nome: "Formatação ABNT de até 25 páginas", valorPorPagina: 8.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 1, maxPaginas: 25 },
+  { id: 20, nome: "Formatação ABNT de 26 e 50 páginas", valorPorPagina: 7.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 26, maxPaginas: 50 },
+  { id: 21, nome: "Formatação ABNT de 51 e 75 páginas", valorPorPagina: 6.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 51, maxPaginas: 75 },
+  { id: 22, nome: "Formatação ABNT de 76 e 100 páginas", valorPorPagina: 5.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 76, maxPaginas: 100 },
+  { id: 23, nome: "Formatação ABNT de 101 e 300 páginas", valorPorPagina: 4.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 101, maxPaginas: 300 }
 ];
 
 // Categorias de serviços
@@ -58,8 +58,10 @@ const CalculadoraDeLeve = () => {
     formatacao: 0
   });
   
-  // Estado para controlar tooltips
-  const [showTooltip, setShowTooltip] = useState({
+  // Estado para controlar mensagens de erro
+  const [erros, setErros] = useState({
+    mentoria: false,
+    acompanhamento: false,
     leitura: false,
     formatacao: false
   });
@@ -69,6 +71,34 @@ const CalculadoraDeLeve = () => {
   
   // Estado para rastrear os itens selecionados para o resumo
   const [itensOrcamento, setItensOrcamento] = useState([]);
+  
+  // Função para validar se todas as categorias têm pelo menos uma opção selecionada
+  const validarSelecoes = () => {
+    const novoErros = {
+      mentoria: servicosSelecionados.mentoria.length === 0,
+      acompanhamento: !servicosSelecionados.acompanhamento,
+      leitura: !servicosSelecionados.leitura,
+      formatacao: !servicosSelecionados.formatacao
+    };
+    
+    setErros(novoErros);
+    
+    // Retorna true se não houver erros (todas as categorias têm seleções)
+    return !Object.values(novoErros).some(erro => erro);
+  };
+
+  // Efeito para verificar seleções iniciais quando o componente carrega
+  useEffect(() => {
+    // Verifica se alguma categoria não tem seleção
+    const novoErros = {
+      mentoria: servicosSelecionados.mentoria.length === 0,
+      acompanhamento: !servicosSelecionados.acompanhamento,
+      leitura: !servicosSelecionados.leitura,
+      formatacao: !servicosSelecionados.formatacao
+    };
+    
+    setErros(novoErros);
+  }, [servicosSelecionados]);
 
   // Função para selecionar serviço de mentoria (múltipla escolha)
   const toggleServicoMentoria = (servico) => {
@@ -82,6 +112,11 @@ const CalculadoraDeLeve = () => {
       } else {
         // Adiciona serviço
         servicosAtuais.push({...servico, quantidade: 1});
+      }
+      
+      // Limpa erro se algum serviço foi selecionado
+      if (servicosAtuais.length > 0) {
+        setErros(prev => ({...prev, mentoria: false}));
       }
       
       return {...prev, mentoria: servicosAtuais};
@@ -100,6 +135,11 @@ const CalculadoraDeLeve = () => {
         if (novaQuantidade <= 0) {
           // Remove serviço se quantidade for 0 ou menos
           servicosAtuais.splice(index, 1);
+          
+          // Se não houver mais serviços, marca erro
+          if (servicosAtuais.length === 0) {
+            setErros(prev => ({...prev, mentoria: true}));
+          }
         } else {
           // Atualiza quantidade
           servicosAtuais[index] = {
@@ -117,10 +157,14 @@ const CalculadoraDeLeve = () => {
   const selecionarServico = useCallback((categoria, servico) => {
     if (!servico) {
       setServicosSelecionados(prev => ({...prev, [categoria]: null}));
+      // Marca erro para esta categoria
+      setErros(prev => ({...prev, [categoria]: true}));
       return;
     }
     
     setServicosSelecionados(prev => ({...prev, [categoria]: servico}));
+    // Limpa erro para esta categoria
+    setErros(prev => ({...prev, [categoria]: false}));
     
     // Redefine a quantidade de páginas quando selecionar "não querer" serviço
     if (servico.valor === 0 && (categoria === 'leitura' || categoria === 'formatacao')) {
@@ -136,16 +180,30 @@ const CalculadoraDeLeve = () => {
     let valorTotal = 0;
     const itens = [];
     
-    // Adicionar serviços de mentoria
-    servicosSelecionados.mentoria.forEach(servico => {
-      const valorServico = servico.valor * servico.quantidade;
+    // Adicionar serviços de mentoria - com ordenação específica
+    // Primeiro, encontros de 45 minutos (id: 1)
+    const mentoria45Min = servicosSelecionados.mentoria.find(s => s.id === 1);
+    if (mentoria45Min) {
+      const valorServico = mentoria45Min.valor * mentoria45Min.quantidade;
       valorTotal += valorServico;
       
       itens.push({
-        nome: `${servico.nome} (${servico.quantidade}x)`,
+        nome: `${mentoria45Min.nome} (${mentoria45Min.quantidade}x)`,
         valor: valorServico
       });
-    });
+    }
+    
+    // Depois, encontros de 1h30 (id: 2)
+    const mentoria1h30 = servicosSelecionados.mentoria.find(s => s.id === 2);
+    if (mentoria1h30) {
+      const valorServico = mentoria1h30.valor * mentoria1h30.quantidade;
+      valorTotal += valorServico;
+      
+      itens.push({
+        nome: `${mentoria1h30.nome} (${mentoria1h30.quantidade}x)`,
+        valor: valorServico
+      });
+    }
     
     // Adicionar serviço de acompanhamento
     if (servicosSelecionados.acompanhamento) {
@@ -157,26 +215,42 @@ const CalculadoraDeLeve = () => {
       });
     }
     
-    // Adicionar serviço de leitura crítica
-    if (servicosSelecionados.leitura && servicosSelecionados.leitura.tipo === "porPagina") {
-      const valorLeitura = servicosSelecionados.leitura.valorPorPagina * paginas.leitura;
-      valorTotal += valorLeitura;
-      
-      itens.push({
-        nome: `${servicosSelecionados.leitura.nome} (${paginas.leitura} páginas)`,
-        valor: valorLeitura
-      });
+    // Adicionar serviço de leitura crítica (inclui opção de não querer)
+    if (servicosSelecionados.leitura) {
+      if (servicosSelecionados.leitura.tipo === "porPagina") {
+        const valorLeitura = servicosSelecionados.leitura.valorPorPagina * paginas.leitura;
+        valorTotal += valorLeitura;
+        
+        itens.push({
+          nome: `${servicosSelecionados.leitura.nome} (${paginas.leitura} páginas)`,
+          valor: valorLeitura
+        });
+      } else if (servicosSelecionados.leitura.tipo === "fixo") {
+        // Adiciona a opção "Não vou querer leitura crítica" com valor zero
+        itens.push({
+          nome: servicosSelecionados.leitura.nome,
+          valor: 0
+        });
+      }
     }
     
-    // Adicionar serviço de formatação
-    if (servicosSelecionados.formatacao && servicosSelecionados.formatacao.tipo === "porPagina") {
-      const valorFormatacao = servicosSelecionados.formatacao.valorPorPagina * paginas.formatacao;
-      valorTotal += valorFormatacao;
-      
-      itens.push({
-        nome: `${servicosSelecionados.formatacao.nome} (${paginas.formatacao} páginas)`,
-        valor: valorFormatacao
-      });
+    // Adicionar serviço de formatação (inclui opção de não querer)
+    if (servicosSelecionados.formatacao) {
+      if (servicosSelecionados.formatacao.tipo === "porPagina") {
+        const valorFormatacao = servicosSelecionados.formatacao.valorPorPagina * paginas.formatacao;
+        valorTotal += valorFormatacao;
+        
+        itens.push({
+          nome: `${servicosSelecionados.formatacao.nome} (${paginas.formatacao} páginas)`,
+          valor: valorFormatacao
+        });
+      } else if (servicosSelecionados.formatacao.tipo === "fixo") {
+        // Adiciona a opção "Não vou querer formatação ABNT" com valor zero
+        itens.push({
+          nome: servicosSelecionados.formatacao.nome,
+          valor: 0
+        });
+      }
     }
     
     setValorTotal(valorTotal);
@@ -185,8 +259,11 @@ const CalculadoraDeLeve = () => {
   
   // Função para lidar com o clique no botão "Gerar Orçamento"
   const handleGerarOrcamento = () => {
-    if (itensOrcamento.length === 0) {
-      alert("Por favor, selecione pelo menos um serviço para gerar o orçamento.");
+    // Verifica se todas as categorias têm uma opção selecionada
+    if (!validarSelecoes()) {
+      // Exibe mensagem de erro e faz scroll até o topo para mostrar as categorias com erro
+      alert("Por favor, selecione pelo menos uma opção em cada categoria antes de gerar o orçamento.");
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
     
@@ -224,11 +301,18 @@ const CalculadoraDeLeve = () => {
     
     return (
       <div className="mb-8">
-        <h2 className="text-xl font-bold mb-4 text-indigo-800">{categoria.nome}</h2>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+          <h2 className="text-xl font-bold text-indigo-800 mb-1 sm:mb-0">{categoria.nome}</h2>
+          {erros[categoria.id] && (
+            <span className="text-red-600 text-sm font-medium">
+              ⚠️ Selecione pelo menos uma opção
+            </span>
+          )}
+        </div>
         
         {/* Serviços de Mentoria (múltipla escolha) */}
         {categoria.id === 'mentoria' && (
-          <div className="grid gap-4">
+          <div className={`grid gap-4 ${erros.mentoria ? 'border-red-300 border-2 rounded-lg p-2' : ''}`}>
             {servicos.map(servico => {
               const selecionado = servicosSelecionados.mentoria.some(s => s.id === servico.id);
               const servicoAtual = servicosSelecionados.mentoria.find(s => s.id === servico.id);
@@ -278,7 +362,7 @@ const CalculadoraDeLeve = () => {
         
         {/* Serviços de Acompanhamento (exclusivo) */}
         {categoria.id === 'acompanhamento' && (
-          <div className="grid gap-4">
+          <div className={`grid gap-4 ${erros.acompanhamento ? 'border-red-300 border-2 rounded-lg p-2' : ''}`}>
             {servicos.map(servico => {
               const selecionado = servicosSelecionados.acompanhamento?.id === servico.id;
               
@@ -301,7 +385,7 @@ const CalculadoraDeLeve = () => {
                       </div>
                       <span className={selecionado ? 'font-medium' : ''}>{servico.nome}</span>
                     </div>
-                                          <span className="font-medium">R$ {servico.valor.toFixed(2).replace('.', ',')}</span>
+                    <span className="font-medium">R$ {servico.valor.toFixed(2).replace('.', ',')}</span>
                   </div>
                 </div>
               );
@@ -311,7 +395,7 @@ const CalculadoraDeLeve = () => {
         
         {/* Serviços de Leitura Crítica (modificado com abordagem direta) */}
         {categoria.id === 'leitura' && (
-          <div className="space-y-4">
+          <div className={`space-y-4 ${erros.leitura ? 'border-red-300 border-2 rounded-lg p-2' : ''}`}>
             {/* Opção "não querer" */}
             <div 
               className={`border rounded-lg p-4 bg-white shadow-sm cursor-pointer ${
@@ -329,7 +413,7 @@ const CalculadoraDeLeve = () => {
                     {servicosSelecionados.leitura?.id === 12 && <Check size={14} />}
                   </div>
                   <span className={servicosSelecionados.leitura?.id === 12 ? 'font-medium' : ''}>
-                    Não vão querer leitura crítica
+                    Não vou querer leitura crítica
                   </span>
                 </div>
                 <span className="font-medium">R$ 0,00</span>
@@ -586,7 +670,7 @@ const CalculadoraDeLeve = () => {
         
         {/* Serviços de Formatação */}
         {categoria.id === 'formatacao' && (
-          <div className="space-y-4">
+          <div className={`space-y-4 ${erros.formatacao ? 'border-red-300 border-2 rounded-lg p-2' : ''}`}>
             {/* Opção "não querer" */}
             {servicos
               .filter(s => s.tipo === "fixo")
@@ -696,14 +780,12 @@ const CalculadoraDeLeve = () => {
       </div>
       
       {/* Botão para gerar orçamento */}
-      <div className="bg-white p-6 rounded-lg shadow-lg border border-indigo-100 mb-8">
-        <button 
-          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition"
-          onClick={handleGerarOrcamento}
-        >
-          Gerar Orçamento
-        </button>
-      </div>
+      <button 
+        className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition mb-8"
+        onClick={handleGerarOrcamento}
+      >
+        Gerar Orçamento
+      </button>
       
       {/* Rodapé removido conforme solicitado */}
     </div>

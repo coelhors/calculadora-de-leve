@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Calculator, ChevronLeft, Printer, Copy, Mail } from 'lucide-react';
+import { Calculator, ChevronLeft, Copy, Mail } from 'lucide-react';
 
 const ResumoOrcamento = () => {
   const navigate = useNavigate();
@@ -29,11 +29,6 @@ const ResumoOrcamento = () => {
   // Função para voltar para a página de seleção de serviços
   const handleVoltar = () => {
     navigate('/');
-  };
-  
-  // Função para imprimir o orçamento
-  const handleImprimir = () => {
-    window.print();
   };
   
   // Função para copiar o orçamento como texto para a área de transferência
@@ -128,15 +123,7 @@ const ResumoOrcamento = () => {
       <div className="bg-gray-50 p-6 rounded-lg shadow mb-8 print:hidden">
         <h3 className="text-lg font-medium mb-4 text-gray-800">Opções</h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <button 
-            onClick={handleImprimir}
-            className="flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition"
-          >
-            <Printer size={18} className="mr-2" />
-            Imprimir
-          </button>
-          
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <button 
             onClick={handleCopiar}
             className="flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition"
@@ -150,7 +137,7 @@ const ResumoOrcamento = () => {
             className="flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition"
           >
             <Mail size={18} className="mr-2" />
-            Enviar por Email
+            Enviar por email
           </button>
         </div>
       </div>
