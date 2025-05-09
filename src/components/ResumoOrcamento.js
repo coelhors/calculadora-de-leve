@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Calculator, ChevronLeft, Copy, Mail } from 'lucide-react';
+import { Calculator, ChevronLeft, Copy, Mail, Clock, ThumbsUp, Heart, Phone } from 'lucide-react';
 
 const ResumoOrcamento = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const ResumoOrcamento = () => {
     valorTotal: 0
   });
   
-  // Estado para mostrar notificação de cópia
+  // Estado para mostrar notificação de ação
   const [copiado, setCopiado] = useState(false);
   
   // Efeito para carregar os dados do orçamento do sessionStorage
@@ -44,7 +44,7 @@ const ResumoOrcamento = () => {
     // Adicionar total
     texto += `\nValor Total: R$ ${orcamentoData.valorTotal.toFixed(2)}\n\n`;
     texto += "Para mais informações, entre em contato:\n";
-    texto += "deleve@exemplo.com | (00) 00000-0000";
+    texto += "anacoelho@delevenatese.com | (75) 98156-3951";
     
     // Copiar para área de transferência
     navigator.clipboard.writeText(texto)
@@ -71,6 +71,10 @@ const ResumoOrcamento = () => {
     
     // Adicionar total
     corpo += `\nValor Total: R$ ${orcamentoData.valorTotal.toFixed(2)}`;
+    
+    // Adicionar informações de contato ao texto do e-mail
+    corpo += `\n\nPara mais informações, entre em contato:\n`;
+    corpo += `anacoelho@delevenatese.com | (75) 98156-3951`;
     
     // Criar link de e-mail
     const mailtoLink = `mailto:?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`;
@@ -119,34 +123,32 @@ const ResumoOrcamento = () => {
         </div>
       </div>
       
-      {/* Ações do orçamento - não mostrar ao imprimir */}
-      <div className="bg-gray-50 p-6 rounded-lg shadow mb-8 print:hidden">
-        <h3 className="text-lg font-medium mb-4 text-gray-800">Opções</h3>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <button 
-            onClick={handleCopiar}
-            className="flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition"
-          >
-            <Copy size={18} className="mr-2" />
-            {copiado ? "Copiado!" : "Copiar"}
-          </button>
-          
-          <button 
-            onClick={handleEnviarEmail}
-            className="flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition"
-          >
-            <Mail size={18} className="mr-2" />
-            Enviar por email
-          </button>
+      {/* Mensagem de validade do orçamento - Destacada conforme solicitado */}
+      <div className="bg-yellow-50 p-6 rounded-lg border border-yellow-300 mb-8 text-center flex justify-center items-center">
+        <div className="text-yellow-700 font-medium flex items-center">
+          <Clock size={24} className="text-yellow-600 mr-2 flex-shrink-0" />
+          <p className="text-yellow-800">
+            Este orçamento é válido por <span className="font-bold">até 5 dias úteis</span> a partir da data de geração.
+          </p>
         </div>
       </div>
       
-      {/* Mensagem de orçamento válido */}
-      <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-8">
-        <p className="text-gray-700 text-center">
-          Este orçamento é válido por 30 dias a partir da data de geração.
-        </p>
+      {/* Ações do orçamento - não mostrar ao imprimir */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 print:hidden">
+        <button 
+          className="flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-medium py-4 px-4 rounded-lg transition shadow"
+        >
+          <ThumbsUp size={20} className="mr-2" />
+          Gostei! Quero contratar os serviços da De Leve!
+        </button>
+        
+        <button 
+          onClick={handleEnviarEmail}
+          className="flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-4 px-4 rounded-lg transition shadow"
+        >
+          <Mail size={20} className="mr-2" />
+          Enviar por email
+        </button>
       </div>
       
       {/* Rodapé - mostrado na impressão também */}
@@ -154,8 +156,15 @@ const ResumoOrcamento = () => {
         <p className="text-sm text-indigo-700">
           <strong>De Leve na Tese</strong> - Mentoria Acadêmica
         </p>
-        <p className="text-xs text-indigo-600 mt-1">
-          Contato: deleve@exemplo.com | (00) 00000-0000
+        <p className="text-xs text-indigo-600 mt-1 flex items-center justify-center space-x-3">
+          <span className="flex items-center">
+            <Mail size={14} className="mr-1 text-indigo-500" />
+            <span>anacoelho@delevenatese.com</span>
+          </span>
+          <span className="flex items-center">
+            <Phone size={14} className="mr-1 text-indigo-500" />
+            <span>(75) 98156-3951</span>
+          </span>
         </p>
       </div>
     </div>
