@@ -6,13 +6,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f9fafb;
+  background-color: #6D63A7; /* Cor de fundo definida para toda a aplicação */
   color: #333;
 }
 
 .App {
   min-height: 100vh;
   padding: 20px 0;
+  background-color: #6D63A7; /* Garantindo que o container App também tenha a mesma cor */
 }
 
 /* Estilos responsivos */
@@ -100,6 +101,7 @@ input[type=number] {
   
   .App {
     padding: 0;
+    background-color: white;
   }
   
   .print\:hidden {

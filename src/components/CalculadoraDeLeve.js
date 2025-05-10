@@ -30,7 +30,7 @@ const CalculadoraDeLeve = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4" style={{ backgroundColor: '#6D63A7', minHeight: '100vh' }}>
+    <div className="max-w-4xl mx-auto p-4">
       <Header 
         title="CALCULADORA DE LEVE" 
         subtitle="Simule seu orçamento para serviços de mentoria acadêmica" 
