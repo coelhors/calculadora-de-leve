@@ -1,12 +1,16 @@
 import React from 'react';
 
-const Header = ({ title, subtitle }) => {
+const Header = ({ title, subtitle, isWelcomeText = false }) => {
   return (
     <header className="mb-8 text-center">
-      <h1 className="text-3xl font-bold mb-2" style={{ color: '#FFCF5E' }}>
+      <h1 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: '#FFCF5E' }}>
         {title || "CALCULADORA DE LEVE"}
       </h1>
-      {subtitle && <p className="text-gray-200">{subtitle}</p>}
+      {subtitle && (
+        <p className={`text-white max-w-3xl mx-auto ${isWelcomeText ? 'text-lg md:text-xl' : ''}`}>
+          {subtitle}
+        </p>
+      )}
     </header>
   );
 };

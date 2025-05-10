@@ -33,7 +33,8 @@ const CalculadoraDeLeve = () => {
     <div className="max-w-4xl mx-auto p-4">
       <Header 
         title="CALCULADORA DE LEVE" 
-        subtitle="Simule seu orçamento para serviços de mentoria acadêmica" 
+        subtitle="Oie! Esta é a nossa calculadora de valores do serviço de Mentoria da De Leve na Tese. De forma bem simples, rápida e sem enrolação, você consegue escolher uma opção exatamente do seu jeito. Vamos lá?!"
+        isWelcomeText={true}
       />
       
       {/* Seção de seleção de serviços */}
