@@ -4,7 +4,12 @@ const ServicoSection = ({ titulo, erro, children }) => {
   return (
     <div className="mb-8">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-        <h2 className="text-xl font-bold text-indigo-800 mb-1 sm:mb-0">{titulo}</h2>
+        <h2 
+          className="text-xl font-bold mb-1 sm:mb-0"
+          style={{ color: '#4C477C' }}
+        >
+          {titulo}
+        </h2>
         {erro && (
           <span className="text-red-600 text-sm font-medium">
             ⚠️ Selecione pelo menos uma opção

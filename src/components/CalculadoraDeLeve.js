@@ -7,6 +7,7 @@ import MentoriaSection from './calculadora/MentoriaSection';
 import AcompanhamentoSection from './calculadora/AcompanhamentoSection';
 import LeituraCriticaSection from './calculadora/LeituraCriticaSection';
 import FormatacaoSection from './calculadora/FormatacaoSection';
+import logo from '../assets/images/logo.png'; // Importação do logo
 
 const CalculadoraDeLeve = () => {
   const navigate = useNavigate();
@@ -29,13 +30,28 @@ const CalculadoraDeLeve = () => {
     navigate('/resumo');
   };
 
+  const welcomeText = (
+    <>
+      Oie! Esta é a calculadora da <strong>De Leve na Tese</strong>. De forma simples, você consegue escolher as opções de serviços que melhor atendem as suas necessidades. Vamos lá?!
+    </>
+  );
+
   return (
     <div className="max-w-4xl mx-auto p-4">
       <Header 
         title="CALCULADORA DE LEVE" 
-        subtitle="Oie! Esta é a nossa calculadora de valores do serviço de Mentoria da De Leve na Tese. De forma bem simples, rápida e sem enrolação, você consegue escolher uma opção exatamente do seu jeito. Vamos lá?!"
+        subtitle={welcomeText}
         isWelcomeText={true}
       />
+      
+      {/* Logo - alinhado à esquerda */}
+      <div className="flex justify-start mt-6 mb-8">
+        <img 
+          src={logo} 
+          alt="Logo De Leve na Tese" 
+          className="h-16 md:h-20"
+        />
+      </div>
       
       {/* Seção de seleção de serviços */}
       <div className="bg-gray-50 p-6 rounded-lg shadow mb-8">
@@ -45,13 +61,13 @@ const CalculadoraDeLeve = () => {
         <FormatacaoSection />
       </div>
       
-      {/* Botão para gerar orçamento */}
-      <Button 
+      {/* Botão para gerar orçamento com efeito hover de escurecimento */}
+      <button 
         onClick={handleGerarOrcamento}
-        className="w-full py-3 px-4 mb-8"
+        className="btn-orcamento"
       >
         Gerar Orçamento
-      </Button>
+      </button>
     </div>
   );
 };

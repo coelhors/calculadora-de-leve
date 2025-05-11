@@ -16,6 +16,25 @@ body {
   background-color: #6D63A7; /* Garantindo que o container App também tenha a mesma cor */
 }
 
+/* Estilos para o botão de gerar orçamento */
+.btn-orcamento {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  font-size: 1.125rem;
+  border-radius: 0.5rem;
+  color: #4C477C;
+  background-color: #FBAE15;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+/* Efeito hover para o botão */
+.btn-orcamento:hover {
+  background-color: #E69C13; /* Versão mais escura do #FBAE15 */
+}
+
 /* Estilos responsivos */
 @media (max-width: 768px) {
   .App {
