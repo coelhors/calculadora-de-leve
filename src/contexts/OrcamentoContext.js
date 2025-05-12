@@ -1,9 +1,10 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useCallback } from 'react';
 
 // Criação do contexto
 export const OrcamentoContext = createContext();
 
-export const OrcamentoProvider = ({ children }) => {
+// Provider do contexto
+const OrcamentoProvider = ({ children }) => {
   // Estado para armazenar serviços selecionados
   const [servicosSelecionados, setServicosSelecionados] = useState({
     mentoria: [],
@@ -32,8 +33,8 @@ export const OrcamentoProvider = ({ children }) => {
   // Estado para rastrear os itens selecionados para o resumo
   const [itensOrcamento, setItensOrcamento] = useState([]);
 
-  // Função para verificar erros
-  const verificarErros = () => {
+  // Função para verificar erros (usando useCallback para evitar dependências cíclicas)
+  const verificarErros = useCallback(() => {
     const novoErros = {
       mentoria: servicosSelecionados.mentoria.length === 0,
       acompanhamento: !servicosSelecionados.acompanhamento,
@@ -43,7 +44,7 @@ export const OrcamentoProvider = ({ children }) => {
     
     setErros(novoErros);
     return !Object.values(novoErros).some(erro => erro);
-  };
+  }, [servicosSelecionados]);
 
   // Função para selecionar serviço de mentoria (múltipla escolha)
   const toggleServicoMentoria = (servico) => {
@@ -147,7 +148,8 @@ export const OrcamentoProvider = ({ children }) => {
       
       itens.push({
         nome: `${mentoria45Min.nome} (${mentoria45Min.quantidade}x)`,
-        valor: valorServico
+        valor: valorServico,
+        categoria: 'mentoria'
       });
     }
     
@@ -159,7 +161,8 @@ export const OrcamentoProvider = ({ children }) => {
       
       itens.push({
         nome: `${mentoria1h30.nome} (${mentoria1h30.quantidade}x)`,
-        valor: valorServico
+        valor: valorServico,
+        categoria: 'mentoria'
       });
     }
     
@@ -169,7 +172,8 @@ export const OrcamentoProvider = ({ children }) => {
       
       itens.push({
         nome: servicosSelecionados.acompanhamento.nome,
-        valor: servicosSelecionados.acompanhamento.valor
+        valor: servicosSelecionados.acompanhamento.valor,
+        categoria: 'acompanhamento'
       });
     }
     
@@ -181,13 +185,15 @@ export const OrcamentoProvider = ({ children }) => {
         
         itens.push({
           nome: `${servicosSelecionados.leitura.nome} (${paginas.leitura} páginas)`,
-          valor: valorLeitura
+          valor: valorLeitura,
+          categoria: 'leitura'
         });
       } else if (servicosSelecionados.leitura.tipo === "fixo") {
         // Adiciona a opção "Não vou querer leitura crítica" com valor zero
         itens.push({
           nome: servicosSelecionados.leitura.nome,
-          valor: 0
+          valor: 0,
+          categoria: 'leitura'
         });
       }
     }
@@ -200,13 +206,17 @@ export const OrcamentoProvider = ({ children }) => {
         
         itens.push({
           nome: `${servicosSelecionados.formatacao.nome} (${paginas.formatacao} páginas)`,
-          valor: valorFormatacao
+          valor: valorFormatacao,
+          categoria: 'formatacao',
+          formatacao: true // Adicionar flag para garantir classificação correta
         });
       } else if (servicosSelecionados.formatacao.tipo === "fixo") {
         // Adiciona a opção "Não vou querer formatação ABNT" com valor zero
         itens.push({
           nome: servicosSelecionados.formatacao.nome,
-          valor: 0
+          valor: 0,
+          categoria: 'formatacao',
+          formatacao: true // Adicionar flag para garantir classificação correta
         });
       }
     }
@@ -218,7 +228,7 @@ export const OrcamentoProvider = ({ children }) => {
   // Efeito para verificar seleções iniciais quando o componente carrega
   useEffect(() => {
     verificarErros();
-  }, [servicosSelecionados]);
+  }, [servicosSelecionados, verificarErros]);
 
   // Salvar orçamento no sessionStorage
   const salvarOrcamento = () => {
@@ -260,4 +270,5 @@ export const OrcamentoProvider = ({ children }) => {
   );
 };
 
-export default OrcamentoProvider;
+// Exportações explícitas
+export { OrcamentoProvider };

@@ -48,7 +48,7 @@ const FormatacaoSection = () => {
               onBlur={() => validarPaginas('formatacao', servico.minPaginas, servico.maxPaginas)}
               min={servico.minPaginas}
               max={servico.maxPaginas}
-              helpText={`(min: ${servico.minPaginas}, max: ${servico.maxPaginas})`}
+              helpText={`(mín: ${servico.minPaginas}, máx: ${servico.maxPaginas})`}
             />
           </RadioOption>
         ))}

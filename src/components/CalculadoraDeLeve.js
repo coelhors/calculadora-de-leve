@@ -11,9 +11,9 @@ import logo from '../assets/images/logo.png'; // Importação do logo
 
 const CalculadoraDeLeve = () => {
   const navigate = useNavigate();
-  const { verificarErros, salvarOrcamento } = useOrcamento();
+  const { verificarErros, salvarOrcamento, itensOrcamento } = useOrcamento();
 
-  // Função para lidar com o clique no botão "Gerar Orçamento"
+  // Função para lidar com o clique no botão "Calcular!"
   const handleGerarOrcamento = () => {
     // Verifica se todas as categorias têm uma opção selecionada
     if (!verificarErros()) {
@@ -22,6 +22,9 @@ const CalculadoraDeLeve = () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
+    
+    // Logging para debug
+    console.log("Itens do orçamento antes de navegar:", itensOrcamento);
     
     // Salvar dados para recuperar na próxima página
     salvarOrcamento();
@@ -61,13 +64,15 @@ const CalculadoraDeLeve = () => {
         <FormatacaoSection />
       </div>
       
-      {/* Botão para gerar orçamento com efeito hover de escurecimento */}
-      <button 
-        onClick={handleGerarOrcamento}
-        className="btn-orcamento"
-      >
-        Gerar Orçamento
-      </button>
+      {/* Botão para calcular com tamanho ajustado e texto maior */}
+      <div className="flex justify-center mb-8">
+        <button 
+          onClick={handleGerarOrcamento}
+          className="btn-orcamento text-xl px-20 py-4"
+        >
+          Calcular!
+        </button>
+      </div>
     </div>
   );
 };

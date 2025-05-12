@@ -48,14 +48,14 @@ const LeituraCriticaSection = () => {
           onBlur={() => validarPaginas('leitura', servico.minPaginas, servico.maxPaginas)}
           min={servico.minPaginas}
           max={servico.maxPaginas}
-          helpText={`(min: ${servico.minPaginas}, max: ${servico.maxPaginas})`}
+          helpText={`(mín: ${servico.minPaginas}, máx: ${servico.maxPaginas})`}
         />
       </RadioOption>
     ))
   );
 
   return (
-    <ServicoSection titulo="Leitura Crítica" erro={erros.leitura}>
+    <ServicoSection titulo="Leitura crítica" erro={erros.leitura}>
       <div className="space-y-4">
         {renderNaoQuero()}
         {renderOpcoesPorPagina()}

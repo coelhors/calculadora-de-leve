@@ -16,18 +16,17 @@ body {
   background-color: #6D63A7; /* Garantindo que o container App também tenha a mesma cor */
 }
 
-/* Estilos para o botão de gerar orçamento */
+/* Estilos para o botão de calcular */
 .btn-orcamento {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  margin-bottom: 2rem;
-  font-weight: 500;
-  font-size: 1.125rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1.25rem;
   border-radius: 0.5rem;
   color: #4C477C;
   background-color: #FBAE15;
   transition: background-color 0.3s ease;
   border: none;
+  letter-spacing: 0.5px;
 }
 
 /* Efeito hover para o botão */

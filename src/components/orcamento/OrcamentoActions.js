@@ -58,22 +58,24 @@ const OrcamentoActions = ({ itens, valorTotal }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 print:hidden">
-      <Button 
-        variant="success"
-        className="py-4"
-        icon={<ThumbsUp size={20} />}
-      >
-        Gostei! Quero contratar os serviços da De Leve!
-      </Button>
-      
+    <div className="flex flex-col gap-4 mb-8 print:hidden">
+      {/* Botão para enviar por email (agora em cima) */}
       <Button 
         variant="primary"
         className="py-4"
         icon={<Mail size={20} />}
         onClick={handleEnviarEmail}
       >
-        Enviar por email
+        Enviar este orçamento para o meu e-mail
+      </Button>
+      
+      {/* Botão para contratar (agora embaixo) */}
+      <Button 
+        variant="success"
+        className="py-4"
+        icon={<ThumbsUp size={20} />}
+      >
+        Gostei! Quero contratar os serviços da De Leve!
       </Button>
       
       {copiado && (

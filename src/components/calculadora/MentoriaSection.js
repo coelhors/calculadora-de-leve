@@ -16,7 +16,7 @@ const MentoriaSection = () => {
   const servicosMentoria = SERVICOS.filter(s => s.categoria === 'mentoria');
 
   return (
-    <ServicoSection titulo="Encontros de Mentoria" erro={erros.mentoria}>
+    <ServicoSection titulo="Mentoria" erro={erros.mentoria}>
       <div className="grid gap-4">
         {servicosMentoria.map(servico => {
           const selecionado = servicosSelecionados.mentoria.some(s => s.id === servico.id);
@@ -50,7 +50,7 @@ const MentoriaSection = () => {
               
               {selecionado && (
                 <div className="ml-9 mt-3 flex items-center space-x-3">
-                  <span className="text-sm text-gray-700">Quantidade:</span>
+                  <span className="text-sm text-gray-700">Número de encontros:</span>
                   <div className="flex items-center border rounded bg-white">
                     <button 
                       onClick={() => alterarQuantidadeMentoria(servico.id, -1)}

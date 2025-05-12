@@ -48,7 +48,7 @@ const ResumoOrcamento = () => {
           icon={<ChevronLeft size={20} />}
           className="text-lg"
         >
-          Voltar para seleção de serviços
+          Voltar para a tela de seleção de serviços
         </Button>
       </div>
       

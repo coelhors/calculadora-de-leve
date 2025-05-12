@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import CalculadoraDeLeve from './components/CalculadoraDeLeve';
 import ResumoOrcamento from './components/ResumoOrcamento';
-import OrcamentoProvider from './contexts/OrcamentoContext';
+import { OrcamentoProvider } from './contexts/OrcamentoContext';
 
 function App() {
   return (
