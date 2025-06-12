@@ -4,7 +4,11 @@ Calculadora de orçamentos para serviços de mentoria acadêmica da empresa "De 
 
 ## 📋 Sobre o Projeto
 
-Este projeto foi criado para a empresa "De Leve na Tese", um serviço de mentoria acadêmica. A calculadora permite que os clientes selecionem serviços e visualizem um orçamento em tempo real.
+Este projeto foi criado para a empresa "De Leve na Tese", um serviço de mentoria acadêmica fundado pela **Dra. Ana Coelho**. A calculadora permite que os clientes selecionem serviços e visualizem um orçamento em tempo real.
+
+### 🔗 Links Oficiais
+- **Linktree**: https://linktr.ee/DeLeveNaTese
+- **Instagram**: https://www.instagram.com/delevenatese/
 
 ## ✨ Funcionalidades
 
