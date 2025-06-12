@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useOrcamento from '../hooks/useOrcamento';
 import Header from './layout/Header';
-import Button from './common/Button';
 import MentoriaSection from './calculadora/MentoriaSection';
 import AcompanhamentoSection from './calculadora/AcompanhamentoSection';
 import LeituraCriticaSection from './calculadora/LeituraCriticaSection';
@@ -12,13 +11,14 @@ import logo from '../assets/images/logo.png'; // Importação do logo
 const CalculadoraDeLeve = () => {
   const navigate = useNavigate();
   const { verificarErros, salvarOrcamento, itensOrcamento } = useOrcamento();
+  const [showModal, setShowModal] = useState(false);
 
-  // Função para lidar com o clique no botão "Calcular!"
+  // Função para lidar com o clique no botão "C A L C U L A R !"
   const handleGerarOrcamento = () => {
     // Verifica se todas as categorias têm uma opção selecionada
     if (!verificarErros()) {
-      // Exibe mensagem de erro e faz scroll até o topo para mostrar as categorias com erro
-      alert("Por favor, selecione pelo menos uma opção em cada categoria antes de gerar o orçamento.");
+      // Exibe modal de erro e faz scroll até o topo para mostrar as categorias com erro
+      setShowModal(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -31,6 +31,11 @@ const CalculadoraDeLeve = () => {
     
     // Redirecionar para a página de resumo
     navigate('/resumo');
+  };
+
+  // Função para fechar o modal
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   const welcomeText = (
@@ -70,9 +75,34 @@ const CalculadoraDeLeve = () => {
           onClick={handleGerarOrcamento}
           className="btn-orcamento text-xl px-20 py-4"
         >
-          Calcular!
+          C A L C U L A R !
         </button>
       </div>
+
+      {/* Modal de erro */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg p-8 max-w-lg w-full mx-4 shadow-xl">
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold text-red-600 flex items-center">
+                <span className="text-3xl mr-3">❌</span>
+                Oops! Algo deu errado!
+              </h3>
+            </div>
+            <p className="text-gray-700 mb-8 text-xl">
+              Por favor, selecione pelo menos uma opção em cada categoria de serviço antes de calcular o orçamento.
+            </p>
+            <div className="flex justify-end">
+              <button 
+                onClick={closeModal}
+                className="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition-colors font-medium text-lg"
+              >
+                Entendi
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

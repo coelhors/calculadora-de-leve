@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* Importar a fonte personalizada */
+@font-face {
+  font-family: 'Stadio Now Display Trial';
+  src: url('./assets/fonts/StadioNowDisplayTrial.woff2') format('woff2'),
+       url('./assets/fonts/StadioNowDisplayTrial.woff') format('woff'),
+       url('./assets/fonts/StadioNowDisplayTrial.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --primary-color: #4f46e5;
   --primary-hover: #4338ca;
@@ -10,6 +21,7 @@
   --border-color: #e2e8f0;
   --text-light: #f8fafc;
   --yellow-accent: #FFCF5E;
+  --title-font: 'Stadio Now Display Trial', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 * {
@@ -25,6 +37,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-app);
   color: var(--text-light);
+}
+
+/* Classe para títulos principais */
+.title-font {
+  font-family: var(--title-font);
+}
+
+/* Classe para o botão Calcular */
+.btn-calcular {
+  font-family: var(--title-font);
 }
 
 input::-webkit-outer-spin-button,
