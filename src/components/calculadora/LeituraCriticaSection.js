@@ -55,7 +55,7 @@ const LeituraCriticaSection = () => {
   );
 
   return (
-    <ServicoSection titulo="Leitura crítica" erro={erros.leitura}>
+    <ServicoSection titulo="Leitura crítica" emoji="📖" erro={erros.leitura}>
       <div className="space-y-4">
         {renderNaoQuero()}
         {renderOpcoesPorPagina()}

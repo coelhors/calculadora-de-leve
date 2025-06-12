@@ -1,10 +1,14 @@
-import React, { useContext } from 'react';
-import { FileText, BookOpen, FileText as FileIcon, Brain, Calendar } from 'lucide-react';
+import React from 'react';
 import OrcamentoItem from './OrcamentoItem';
 
 // Componente de resumo do orçamento
 const OrcamentoSummary = ({ itens, valorTotal }) => {
   console.log("Itens recebidos no resumo:", itens);
+  
+  // Função para formatar valor com separador de milhares
+  const formatarValor = (valor) => {
+    return valor.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  };
   
   // Arrays vazios para cada categoria
   const mentoriaItems = [];
@@ -19,30 +23,37 @@ const OrcamentoSummary = ({ itens, valorTotal }) => {
     // Para debugging
     console.log("Classificando item:", item);
     
-    // Forçar formatação ABNT correta - Solução para garantir que formatação ABNT seja classificada corretamente
-    if (item.nome.includes("formatação ABNT") || (item.nome.includes("páginas") && item.formatacao)) {
-      console.log("Item classificado como formatação ABNT:", item);
-      formatacaoItems.push(item);
-      return;
-    }
-    
-    // Mentoria
-    if (item.nome.includes("Duração de")) {
-      mentoriaItems.push(item);
-      return;
-    }
-    
-    // Período de acompanhamento
-    if (item.nome.includes("dias") && !item.nome.includes("páginas")) {
-      acompanhamentoItems.push(item);
-      return;
-    }
-    
-    // Leitura crítica
-    if (item.nome.includes("leitura crítica") || 
-        (item.nome.includes("páginas") && !item.nome.includes("formatação") && !item.formatacao)) {
-      leituraItems.push(item);
-      return;
+    // Usar a propriedade 'categoria' do item para classificação mais precisa
+    switch(item.categoria) {
+      case 'mentoria':
+        mentoriaItems.push(item);
+        break;
+      case 'acompanhamento':
+        acompanhamentoItems.push(item);
+        break;
+      case 'leitura':
+        leituraItems.push(item);
+        break;
+      case 'formatacao':
+        formatacaoItems.push(item);
+        break;
+      default:
+        // Fallback para o método anterior se a categoria não estiver definida
+        if (item.nome.includes("Duração de")) {
+          mentoriaItems.push(item);
+        } else if (item.nome.includes("dias") && !item.nome.includes("páginas")) {
+          acompanhamentoItems.push(item);
+        } else if (item.nome.includes("leitura crítica") || 
+                   (item.nome.includes("páginas") && !item.nome.includes("formatação") && !item.formatacao) ||
+                   item.nome.includes("Não vou querer leitura crítica") ||
+                   (item.nome === "Não vou querer" && item.categoria === undefined && !item.formatacao)) {
+          leituraItems.push(item);
+        } else if (item.nome.includes("formatação ABNT") || 
+                   item.formatacao || 
+                   item.nome.includes("Não vou querer formatação ABNT")) {
+          formatacaoItems.push(item);
+        }
+        break;
     }
   });
 
@@ -59,7 +70,7 @@ const OrcamentoSummary = ({ itens, valorTotal }) => {
       {/* Seção de Mentoria */}
       <div className="mb-6">
         <div className="flex items-center mb-3 pb-2 border-b border-gray-200">
-          <Brain size={18} className="text-indigo-700 mr-2" />
+          <span className="text-xl mr-2">🧠</span>
           <h3 className="text-lg font-bold text-indigo-800">Mentoria</h3>
         </div>
         <div className="pl-2">
@@ -80,7 +91,7 @@ const OrcamentoSummary = ({ itens, valorTotal }) => {
       {/* Seção de Período de Acompanhamento */}
       <div className="mb-6">
         <div className="flex items-center mb-3 pb-2 border-b border-gray-200">
-          <Calendar size={18} className="text-indigo-700 mr-2" />
+          <span className="text-xl mr-2">🗓️</span>
           <h3 className="text-lg font-bold text-indigo-800">Período de acompanhamento</h3>
         </div>
         <div className="pl-2">
@@ -101,7 +112,7 @@ const OrcamentoSummary = ({ itens, valorTotal }) => {
       {/* Seção de Leitura Crítica */}
       <div className="mb-6">
         <div className="flex items-center mb-3 pb-2 border-b border-gray-200">
-          <BookOpen size={18} className="text-indigo-700 mr-2" />
+          <span className="text-xl mr-2">📖</span>
           <h3 className="text-lg font-bold text-indigo-800">Leitura crítica</h3>
         </div>
         <div className="pl-2">
@@ -122,7 +133,7 @@ const OrcamentoSummary = ({ itens, valorTotal }) => {
       {/* Seção de Formatação ABNT */}
       <div className="mb-6">
         <div className="flex items-center mb-3 pb-2 border-b border-gray-200">
-          <FileIcon size={18} className="text-indigo-700 mr-2" />
+          <span className="text-xl mr-2">📝</span>
           <h3 className="text-lg font-bold text-indigo-800">Formatação ABNT</h3>
         </div>
         <div className="pl-2">
@@ -143,7 +154,7 @@ const OrcamentoSummary = ({ itens, valorTotal }) => {
       {/* Total */}
       <div className="py-4 flex justify-between font-bold text-lg border-t-2 border-indigo-200 mt-4">
         <span>Total</span>
-        <span className="text-indigo-800">R$ {valorTotal.toFixed(2).replace('.', ',')}</span>
+        <span className="text-indigo-800">R$ {formatarValor(valorTotal)}</span>
       </div>
     </div>
   );

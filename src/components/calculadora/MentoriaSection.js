@@ -16,7 +16,7 @@ const MentoriaSection = () => {
   const servicosMentoria = SERVICOS.filter(s => s.categoria === 'mentoria');
 
   return (
-    <ServicoSection titulo="Mentoria" erro={erros.mentoria}>
+    <ServicoSection titulo="Mentoria" emoji="🧠" erro={erros.mentoria}>
       <div className="grid gap-4">
         {servicosMentoria.map(servico => {
           const selecionado = servicosSelecionados.mentoria.some(s => s.id === servico.id);

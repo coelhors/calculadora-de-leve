@@ -13,16 +13,17 @@ const SERVICOS = [
     { id: 10, nome: "De 120 dias", valor: 400.00, tipo: "base", categoria: "acompanhamento" },
     { id: 11, nome: "De 150 dias", valor: 500.00, tipo: "base", categoria: "acompanhamento" },
     
-    // Modificado conforme solicitado - ajuste nos intervalos de páginas
-    { id: 12, nome: "Não vou querer leitura crítica", valor: 0.00, tipo: "fixo", categoria: "leitura" },
-    { id: 13, nome: "De até 25 páginas", valorPorPagina: 13.50, tipo: "porPagina", categoria: "leitura", minPaginas: 1, maxPaginas: 25 },
+    // Leitura crítica - removido "De" da primeira opção
+    { id: 12, nome: "Não vou querer", valor: 0.00, tipo: "fixo", categoria: "leitura" },
+    { id: 13, nome: "Até 25 páginas", valorPorPagina: 13.50, tipo: "porPagina", categoria: "leitura", minPaginas: 1, maxPaginas: 25 },
     { id: 14, nome: "De 26 a 50 páginas", valorPorPagina: 11.50, tipo: "porPagina", categoria: "leitura", minPaginas: 26, maxPaginas: 50 },
     { id: 15, nome: "De 51 a 75 páginas", valorPorPagina: 9.50, tipo: "porPagina", categoria: "leitura", minPaginas: 51, maxPaginas: 75 },
     { id: 16, nome: "De 76 a 100 páginas", valorPorPagina: 7.50, tipo: "porPagina", categoria: "leitura", minPaginas: 76, maxPaginas: 100 },
     { id: 17, nome: "De 101 a 300 páginas", valorPorPagina: 5.50, tipo: "porPagina", categoria: "leitura", minPaginas: 101, maxPaginas: 300 },
     
-    { id: 18, nome: "Não vou querer formatação ABNT", valor: 0.00, tipo: "fixo", categoria: "formatacao" },
-    { id: 19, nome: "De até 25 páginas", valorPorPagina: 8.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 1, maxPaginas: 25 },
+    // Formatação ABNT - removido "De" da primeira opção
+    { id: 18, nome: "Não vou querer", valor: 0.00, tipo: "fixo", categoria: "formatacao" },
+    { id: 19, nome: "Até 25 páginas", valorPorPagina: 8.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 1, maxPaginas: 25 },
     { id: 20, nome: "De 26 a 50 páginas", valorPorPagina: 7.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 26, maxPaginas: 50 },
     { id: 21, nome: "De 51 a 75 páginas", valorPorPagina: 6.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 51, maxPaginas: 75 },
     { id: 22, nome: "De 76 a 100 páginas", valorPorPagina: 5.50, tipo: "porPagina", categoria: "formatacao", minPaginas: 76, maxPaginas: 100 },

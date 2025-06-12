@@ -22,7 +22,7 @@ const FormatacaoSection = () => {
   const servicosFormatacao = SERVICOS.filter(s => s.categoria === 'formatacao' && s.tipo === 'porPagina');
   
   return (
-    <ServicoSection titulo="Formatação ABNT" erro={erros.formatacao}>
+    <ServicoSection titulo="Formatação ABNT" emoji="📝" erro={erros.formatacao}>
       <div className="space-y-4">
         {/* Opção "Não vou querer" */}
         <RadioOption

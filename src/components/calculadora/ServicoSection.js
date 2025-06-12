@@ -1,13 +1,14 @@
 import React from 'react';
 
-const ServicoSection = ({ titulo, erro, children }) => {
+const ServicoSection = ({ titulo, erro, emoji, children }) => {
   return (
     <div className="mb-8">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
         <h2 
-          className="text-xl font-bold mb-1 sm:mb-0"
+          className="text-xl font-bold mb-1 sm:mb-0 flex items-center"
           style={{ color: '#4C477C' }}
         >
+          {emoji && <span className="mr-2">{emoji}</span>}
           {titulo}
         </h2>
         {erro && (

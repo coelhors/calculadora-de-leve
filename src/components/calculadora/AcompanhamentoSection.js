@@ -11,7 +11,7 @@ const AcompanhamentoSection = () => {
   const servicosAcompanhamento = SERVICOS.filter(s => s.categoria === 'acompanhamento');
 
   return (
-    <ServicoSection titulo="Período de acompanhamento" erro={erros.acompanhamento}>
+    <ServicoSection titulo="Período de acompanhamento" emoji="🗓️" erro={erros.acompanhamento}>
       <div className="grid gap-4">
         {servicosAcompanhamento.map(servico => (
           <RadioOption

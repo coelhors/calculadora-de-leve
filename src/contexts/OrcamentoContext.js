@@ -183,8 +183,11 @@ const OrcamentoProvider = ({ children }) => {
         const valorLeitura = servicosSelecionados.leitura.valorPorPagina * paginas.leitura;
         valorTotal += valorLeitura;
         
+        // Usar singular ou plural conforme a quantidade de páginas
+        const textoPaginas = paginas.leitura === 1 ? 'página' : 'páginas';
+        
         itens.push({
-          nome: `${servicosSelecionados.leitura.nome} (${paginas.leitura} páginas)`,
+          nome: `${servicosSelecionados.leitura.nome} (${paginas.leitura} ${textoPaginas})`,
           valor: valorLeitura,
           categoria: 'leitura'
         });
@@ -204,8 +207,12 @@ const OrcamentoProvider = ({ children }) => {
         const valorFormatacao = servicosSelecionados.formatacao.valorPorPagina * paginas.formatacao;
         valorTotal += valorFormatacao;
         
+        // Usar singular ou plural conforme a quantidade de páginas
+        const textoPaginas = paginas.formatacao === 1 ? 'página' : 'páginas';
+        
+        // Corrigido: usar o nome original do serviço em vez de "De até 25 páginas"
         itens.push({
-          nome: `${servicosSelecionados.formatacao.nome} (${paginas.formatacao} páginas)`,
+          nome: `${servicosSelecionados.formatacao.nome} (${paginas.formatacao} ${textoPaginas})`,
           valor: valorFormatacao,
           categoria: 'formatacao',
           formatacao: true // Adicionar flag para garantir classificação correta

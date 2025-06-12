@@ -1,10 +1,15 @@
 import React from 'react';
 
 const OrcamentoItem = ({ nome, valor }) => {
+  // Função para formatar valor com separador de milhares
+  const formatarValor = (valor) => {
+    return valor.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  };
+
   return (
     <div className="py-2 flex justify-between">
       <span className="text-gray-700">{nome}</span>
-      <span className="font-medium">R$ {valor.toFixed(2).replace('.', ',')}</span>
+      <span className="font-medium">R$ {formatarValor(valor)}</span>
     </div>
   );
 };
