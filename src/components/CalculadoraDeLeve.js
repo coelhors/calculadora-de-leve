@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useOrcamento from '../hooks/useOrcamento';
 import Header from './layout/Header';
+import Footer from './layout/Footer';
 import MentoriaSection from './calculadora/MentoriaSection';
 import AcompanhamentoSection from './calculadora/AcompanhamentoSection';
 import LeituraCriticaSection from './calculadora/LeituraCriticaSection';
@@ -78,6 +79,9 @@ const CalculadoraDeLeve = () => {
           Calcular
         </button>
       </div>
+
+      {/* Rodapé com informações de contato */}
+      <Footer />
 
       {/* Modal de erro */}
       {showModal && (

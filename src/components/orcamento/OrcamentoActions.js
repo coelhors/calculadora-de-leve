@@ -1,36 +1,8 @@
-import React, { useState } from 'react';
-import { ThumbsUp, Mail, Copy } from 'lucide-react';
+import React from 'react';
+import { ThumbsUp, Mail } from 'lucide-react';
 import Button from '../common/Button';
 
 const OrcamentoActions = ({ itens, valorTotal }) => {
-  const [copiado, setCopiado] = useState(false);
-  
-  // Função para copiar o orçamento como texto para a área de transferência
-  const handleCopiar = () => {
-    // Criar texto do orçamento
-    let texto = "ORÇAMENTO - DE LEVE NA TESE\n\n";
-    
-    // Adicionar itens
-    itens.forEach(item => {
-      texto += `${item.nome}: R$ ${item.valor.toFixed(2)}\n`;
-    });
-    
-    // Adicionar total
-    texto += `\nValor Total: R$ ${valorTotal.toFixed(2)}\n\n`;
-    texto += "Para mais informações, entre em contato:\n";
-    texto += "anacoelho@delevenatese.com | (75) 98156-3951";
-    
-    // Copiar para área de transferência
-    navigator.clipboard.writeText(texto)
-      .then(() => {
-        setCopiado(true);
-        setTimeout(() => setCopiado(false), 2000);
-      })
-      .catch(err => {
-        console.error('Erro ao copiar: ', err);
-        alert('Não foi possível copiar o orçamento. Por favor, tente novamente.');
-      });
-  };
   
   // Função para enviar orçamento por e-mail
   const handleEnviarEmail = () => {
@@ -77,12 +49,6 @@ const OrcamentoActions = ({ itens, valorTotal }) => {
       >
         Gostei! Quero contratar os serviços da De Leve!
       </Button>
-      
-      {copiado && (
-        <div className="fixed top-4 right-4 bg-green-600 text-white p-3 rounded-lg shadow-lg animate-fadeIn text-xl">
-          Orçamento copiado com sucesso!
-        </div>
-      )}
     </div>
   );
 };
