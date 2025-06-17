@@ -33,30 +33,33 @@ const Footer = () => {
 
         {/* Conteúdo central */}
         <div className="flex-1 text-center mx-4">
-          <p className="text-xl text-indigo-700 mb-3">
-            <strong>De Leve na Tese</strong> - Suas palavras são o meu compromisso <strong>💛</strong>
+          <p className="text-base md:text-xl text-indigo-700 mb-3">
+            Suas palavras são o meu compromisso <strong>💛</strong>
           </p>
-          <div className="flex items-center justify-center space-x-12">
+          <div className="flex items-center justify-center space-x-6 md:space-x-12">
             <button
               onClick={handleInstagramClick}
-              className="flex items-center justify-center w-14 h-14 bg-indigo-100 hover:bg-indigo-200 rounded-full transition-colors duration-200"
+              className="flex items-center justify-center w-10 h-10 md:w-14 md:h-14 bg-indigo-100 hover:bg-indigo-200 rounded-full transition-colors duration-200"
               title="Siga-nos no Instagram"
             >
-              <Instagram size={28} className="text-indigo-600" />
+              <Instagram size={20} className="text-indigo-600 md:hidden" />
+              <Instagram size={28} className="text-indigo-600 hidden md:block" />
             </button>
             <button
               onClick={handleEmailClick}
-              className="flex items-center justify-center w-14 h-14 bg-indigo-100 hover:bg-indigo-200 rounded-full transition-colors duration-200"
+              className="flex items-center justify-center w-10 h-10 md:w-14 md:h-14 bg-indigo-100 hover:bg-indigo-200 rounded-full transition-colors duration-200"
               title="Envie um email"
             >
-              <Mail size={28} className="text-indigo-600" />
+              <Mail size={20} className="text-indigo-600 md:hidden" />
+              <Mail size={28} className="text-indigo-600 hidden md:block" />
             </button>
             <button
               onClick={handleLinktreeClick}
-              className="flex items-center justify-center w-14 h-14 bg-indigo-100 hover:bg-indigo-200 rounded-full transition-colors duration-200"
+              className="flex items-center justify-center w-10 h-10 md:w-14 md:h-14 bg-indigo-100 hover:bg-indigo-200 rounded-full transition-colors duration-200"
               title="Acesse nosso Linktree"
             >
-              <TbBrandLinktree size={28} className="text-indigo-600" />
+              <TbBrandLinktree size={20} className="text-indigo-600 md:hidden" />
+              <TbBrandLinktree size={28} className="text-indigo-600 hidden md:block" />
             </button>
           </div>
         </div>

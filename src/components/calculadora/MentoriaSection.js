@@ -94,14 +94,14 @@ const MentoriaSection = () => {
                   >
                     {selecionado && <Check size={16} className="text-white" />}
                   </button>
-                  <span className={`text-lg ${selecionado ? 'font-medium' : ''}`}>{servico.nome}</span>
+                  <span className={`text-sm md:text-lg ${selecionado ? 'font-medium' : ''}`}>{servico.nome}</span>
                 </div>
-                <span className="font-medium text-lg">R$ {servico.valor.toFixed(2).replace('.', ',')} cada</span>
+                <span className="font-medium text-sm md:text-lg">R$ {servico.valor.toFixed(2).replace('.', ',')} cada</span>
               </div>
               
               {selecionado && (
                 <div className="ml-9 mt-3 flex items-center space-x-3">
-                  <span className="text-base text-gray-700">Número de encontros:</span>
+                  <span className="text-xs md:text-base text-gray-700">Número de encontros:</span>
                   <div className="flex items-center border rounded bg-white">
                     <button 
                       onClick={() => alterarQuantidadeMentoria(servico.id, -1)}

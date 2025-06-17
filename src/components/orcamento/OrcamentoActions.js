@@ -34,8 +34,8 @@ const OrcamentoActions = ({ itens, valorTotal }) => {
       {/* Botão para enviar por email (agora em cima) */}
       <Button 
         variant="primary"
-        className="py-4 text-xl"
-        icon={<Mail size={28} />}
+        className="py-3 md:py-4 text-base md:text-xl"
+        icon={<Mail size={20} />}
         onClick={handleEnviarEmail}
       >
         Enviar este orçamento para o meu e-mail
@@ -44,8 +44,8 @@ const OrcamentoActions = ({ itens, valorTotal }) => {
       {/* Botão para contratar (agora embaixo) */}
       <Button 
         variant="success"
-        className="py-4 text-xl"
-        icon={<ThumbsUp size={28} />}
+        className="py-3 md:py-4 text-base md:text-xl"
+        icon={<ThumbsUp size={20} />}
       >
         Gostei! Quero contratar os serviços da De Leve!
       </Button>

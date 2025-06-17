@@ -70,8 +70,8 @@ const OrcamentoSummary = ({ itens, valorTotal }) => {
       {/* Seção de Mentoria */}
       <div className="mb-6">
         <div className="flex items-center mb-3 pb-2 border-b border-gray-200">
-          <span className="text-3xl mr-2">🧠</span>
-          <h3 className="text-2xl font-bold text-indigo-800">Mentoria</h3>
+          <span className="text-2xl md:text-3xl mr-2">🧠</span>
+          <h3 className="text-lg md:text-2xl font-bold text-indigo-800">Mentoria</h3>
         </div>
         <div className="pl-2">
           {mentoriaItems.length > 0 ? (
@@ -83,7 +83,7 @@ const OrcamentoSummary = ({ itens, valorTotal }) => {
               />
             ))
           ) : (
-            <p className="text-gray-500 italic text-xl">Nenhum serviço de mentoria selecionado</p>
+            <p className="text-gray-500 italic text-base md:text-xl">Nenhum serviço de mentoria selecionado</p>
           )}
         </div>
       </div>
@@ -91,8 +91,8 @@ const OrcamentoSummary = ({ itens, valorTotal }) => {
       {/* Seção de Período de Acompanhamento */}
       <div className="mb-6">
         <div className="flex items-center mb-3 pb-2 border-b border-gray-200">
-          <span className="text-3xl mr-2">🗓️</span>
-          <h3 className="text-2xl font-bold text-indigo-800">Período de acompanhamento</h3>
+          <span className="text-2xl md:text-3xl mr-2">🗓️</span>
+          <h3 className="text-lg md:text-2xl font-bold text-indigo-800">Período de acompanhamento</h3>
         </div>
         <div className="pl-2">
           {acompanhamentoItems.length > 0 ? (
@@ -104,7 +104,7 @@ const OrcamentoSummary = ({ itens, valorTotal }) => {
               />
             ))
           ) : (
-            <p className="text-gray-500 italic text-xl">Nenhum período de acompanhamento selecionado</p>
+            <p className="text-gray-500 italic text-base md:text-xl">Nenhum período de acompanhamento selecionado</p>
           )}
         </div>
       </div>
@@ -112,8 +112,8 @@ const OrcamentoSummary = ({ itens, valorTotal }) => {
       {/* Seção de Leitura Crítica */}
       <div className="mb-6">
         <div className="flex items-center mb-3 pb-2 border-b border-gray-200">
-          <span className="text-3xl mr-2">📖</span>
-          <h3 className="text-2xl font-bold text-indigo-800">Leitura crítica</h3>
+          <span className="text-2xl md:text-3xl mr-2">📖</span>
+          <h3 className="text-lg md:text-2xl font-bold text-indigo-800">Leitura crítica</h3>
         </div>
         <div className="pl-2">
           {leituraItems.length > 0 ? (
@@ -125,7 +125,7 @@ const OrcamentoSummary = ({ itens, valorTotal }) => {
               />
             ))
           ) : (
-            <p className="text-gray-500 italic text-xl">Nenhum serviço de leitura crítica selecionado</p>
+            <p className="text-gray-500 italic text-base md:text-xl">Nenhum serviço de leitura crítica selecionado</p>
           )}
         </div>
       </div>
@@ -133,8 +133,8 @@ const OrcamentoSummary = ({ itens, valorTotal }) => {
       {/* Seção de Formatação ABNT */}
       <div className="mb-6">
         <div className="flex items-center mb-3 pb-2 border-b border-gray-200">
-          <span className="text-3xl mr-2">📝</span>
-          <h3 className="text-2xl font-bold text-indigo-800">Formatação ABNT</h3>
+          <span className="text-2xl md:text-3xl mr-2">📝</span>
+          <h3 className="text-lg md:text-2xl font-bold text-indigo-800">Formatação ABNT</h3>
         </div>
         <div className="pl-2">
           {formatacaoItems.length > 0 ? (
@@ -146,13 +146,13 @@ const OrcamentoSummary = ({ itens, valorTotal }) => {
               />
             ))
           ) : (
-            <p className="text-gray-500 italic text-xl">Nenhum serviço de formatação ABNT selecionado</p>
+            <p className="text-gray-500 italic text-base md:text-xl">Nenhum serviço de formatação ABNT selecionado</p>
           )}
         </div>
       </div>
       
       {/* Total */}
-      <div className="py-4 flex justify-between font-bold text-3xl border-t-2 border-indigo-200 mt-4">
+      <div className="py-4 flex justify-between font-bold text-xl md:text-3xl border-t-2 border-indigo-200 mt-4">
         <span>Total</span>
         <span className="text-indigo-800">R$ {formatarValor(valorTotal)}</span>
       </div>
