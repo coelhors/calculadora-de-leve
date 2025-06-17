@@ -8,8 +8,8 @@ const OrcamentoItem = ({ nome, valor }) => {
 
   return (
     <div className="py-2 flex justify-between">
-      <span className="text-gray-700">{nome}</span>
-      <span className="font-medium">R$ {formatarValor(valor)}</span>
+      <span className="text-gray-700 text-xl">{nome}</span>
+      <span className="font-medium text-xl">R$ {formatarValor(valor)}</span>
     </div>
   );
 };

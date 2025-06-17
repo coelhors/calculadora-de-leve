@@ -40,29 +40,29 @@ const CalculadoraDeLeve = () => {
 
   const welcomeText = (
     <>
-      Oie! Esta é a calculadora da <strong>De Leve na Tese</strong>. De forma simples, você consegue escolher as opções de serviços que melhor atendem as suas necessidades. Vamos lá?!
+      Oie! Esta é a calculadora da <strong>De Leve na Tese</strong>. De forma simples, você consegue escolher as opções de serviços que melhor atendem as suas necessidades e obter um orçamento em tempo real. Vamos lá?!
     </>
   );
 
   return (
     <div className="max-w-4xl mx-auto p-4">
+      {/* Logo - centralizado no topo da página */}
+      <div className="flex justify-center mb-10">
+        <img 
+          src={logo} 
+          alt="Logo De Leve na Tese" 
+          className="h-28 md:h-40"
+        />
+      </div>
+      
       <Header 
         title="CALCULADORA DE LEVE" 
         subtitle={welcomeText}
         isWelcomeText={true}
       />
       
-      {/* Logo - alinhado à esquerda */}
-      <div className="flex justify-start mt-6 mb-8">
-        <img 
-          src={logo} 
-          alt="Logo De Leve na Tese" 
-          className="h-16 md:h-20"
-        />
-      </div>
-      
       {/* Seção de seleção de serviços */}
-      <div className="bg-gray-50 p-6 rounded-lg shadow mb-8">
+      <div className="bg-gray-50 p-6 rounded-lg shadow mb-8 mt-12">
         <MentoriaSection />
         <AcompanhamentoSection />
         <LeituraCriticaSection />
@@ -73,9 +73,9 @@ const CalculadoraDeLeve = () => {
       <div className="flex justify-center mb-8">
         <button 
           onClick={handleGerarOrcamento}
-          className="btn-orcamento text-xl px-20 py-4"
+          className="btn-orcamento text-2xl px-28 py-5"
         >
-          C A L C U L A R !
+          Calcular
         </button>
       </div>
 

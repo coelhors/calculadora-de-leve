@@ -18,16 +18,16 @@ body {
 
 /* Estilos para o botão de calcular com fonte personalizada */
 .btn-orcamento {
-  padding: 0.75rem 1.5rem;
+  padding: 1.25rem 7rem; /* py-5 px-28 */
   font-weight: 600;
-  font-size: 1.25rem;
-  border-radius: 0.5rem;
+  font-size: 1.875rem; /* text-3xl */
+  border-radius: 9999px; /* Bordas totalmente redondas */
   color: #4C477C;
   background-color: #FBAE15;
   transition: background-color 0.3s ease;
   border: none;
   letter-spacing: 0.5px;
-  font-family: 'Stadio Now Display Trial', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /* Fonte padrão em vez da personalizada */
 }
 
 /* Efeito hover para o botão */

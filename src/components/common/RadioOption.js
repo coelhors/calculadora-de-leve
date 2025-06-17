@@ -30,11 +30,11 @@ const RadioOption = ({
           >
             {selected && <Check size={14} className="text-white" />}
           </div>
-          <span className={selected ? 'font-medium' : ''}>{label}</span>
+          <span className={`text-lg ${selected ? 'font-medium' : ''}`}>{label}</span>
         </div>
         
         {valueDisplay && (
-          <span className="font-medium">{valueDisplay}</span>
+          <span className="font-medium text-lg">{valueDisplay}</span>
         )}
       </div>
       

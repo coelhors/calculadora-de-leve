@@ -62,8 +62,8 @@ const OrcamentoActions = ({ itens, valorTotal }) => {
       {/* Botão para enviar por email (agora em cima) */}
       <Button 
         variant="primary"
-        className="py-4"
-        icon={<Mail size={20} />}
+        className="py-4 text-xl"
+        icon={<Mail size={28} />}
         onClick={handleEnviarEmail}
       >
         Enviar este orçamento para o meu e-mail
@@ -72,14 +72,14 @@ const OrcamentoActions = ({ itens, valorTotal }) => {
       {/* Botão para contratar (agora embaixo) */}
       <Button 
         variant="success"
-        className="py-4"
-        icon={<ThumbsUp size={20} />}
+        className="py-4 text-xl"
+        icon={<ThumbsUp size={28} />}
       >
         Gostei! Quero contratar os serviços da De Leve!
       </Button>
       
       {copiado && (
-        <div className="fixed top-4 right-4 bg-green-600 text-white p-3 rounded-lg shadow-lg animate-fadeIn">
+        <div className="fixed top-4 right-4 bg-green-600 text-white p-3 rounded-lg shadow-lg animate-fadeIn text-xl">
           Orçamento copiado com sucesso!
         </div>
       )}

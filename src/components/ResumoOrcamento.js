@@ -7,6 +7,7 @@ import Button from './common/Button';
 import OrcamentoSummary from './orcamento/OrcamentoSummary';
 import OrcamentoValidity from './orcamento/OrcamentoValidity';
 import OrcamentoActions from './orcamento/OrcamentoActions';
+import logo from '../assets/images/logo.png'; // Importação do logo
 
 const ResumoOrcamento = () => {
   const navigate = useNavigate();
@@ -36,6 +37,15 @@ const ResumoOrcamento = () => {
   
   return (
     <div className="max-w-4xl mx-auto p-4">
+      {/* Logo - centralizado no topo da página */}
+      <div className="flex justify-center mb-10">
+        <img 
+          src={logo} 
+          alt="Logo De Leve na Tese" 
+          className="h-28 md:h-40"
+        />
+      </div>
+      
       <Header 
         title="RESUMO DO ORÇAMENTO" 
       />
@@ -45,8 +55,8 @@ const ResumoOrcamento = () => {
         <Button 
           onClick={handleVoltar}
           variant="link"
-          icon={<ChevronLeft size={20} />}
-          className="text-lg"
+          icon={<ChevronLeft size={28} />}
+          className="text-2xl"
         >
           Voltar para a tela de seleção de serviços
         </Button>
