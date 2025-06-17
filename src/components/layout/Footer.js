@@ -27,45 +27,45 @@ const Footer = () => {
           <img 
             src={logoFooter} 
             alt="De Leve na Tese" 
-            className="h-12 md:h-16"
+            className="h-8 md:h-12 lg:h-14"
           />
         </div>
 
         {/* Conteúdo central */}
-        <div className="flex-1 text-center mx-4">
-          <p className="text-base md:text-xl text-indigo-700 mb-3">
-            Suas palavras são o meu compromisso <strong>💛</strong>
-          </p>
-          <div className="flex items-center justify-center space-x-6 md:space-x-12">
+        <div className="flex-1 text-center mx-2 md:mx-4">
+          <div className="flex items-center justify-center space-x-4 md:space-x-8 lg:space-x-10">
             <button
               onClick={handleInstagramClick}
-              className="flex items-center justify-center w-10 h-10 md:w-14 md:h-14 bg-indigo-100 hover:bg-indigo-200 rounded-full transition-colors duration-200"
+              className="flex items-center justify-center w-8 h-8 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-indigo-100 hover:bg-indigo-200 rounded-full transition-colors duration-200"
               title="Siga-nos no Instagram"
             >
-              <Instagram size={20} className="text-indigo-600 md:hidden" />
-              <Instagram size={28} className="text-indigo-600 hidden md:block" />
+              <Instagram size={16} className="text-indigo-600 md:hidden" />
+              <Instagram size={20} className="text-indigo-600 hidden md:block lg:hidden" />
+              <Instagram size={24} className="text-indigo-600 hidden lg:block" />
             </button>
             <button
               onClick={handleEmailClick}
-              className="flex items-center justify-center w-10 h-10 md:w-14 md:h-14 bg-indigo-100 hover:bg-indigo-200 rounded-full transition-colors duration-200"
+              className="flex items-center justify-center w-8 h-8 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-indigo-100 hover:bg-indigo-200 rounded-full transition-colors duration-200"
               title="Envie um email"
             >
-              <Mail size={20} className="text-indigo-600 md:hidden" />
-              <Mail size={28} className="text-indigo-600 hidden md:block" />
+              <Mail size={16} className="text-indigo-600 md:hidden" />
+              <Mail size={20} className="text-indigo-600 hidden md:block lg:hidden" />
+              <Mail size={24} className="text-indigo-600 hidden lg:block" />
             </button>
             <button
               onClick={handleLinktreeClick}
-              className="flex items-center justify-center w-10 h-10 md:w-14 md:h-14 bg-indigo-100 hover:bg-indigo-200 rounded-full transition-colors duration-200"
+              className="flex items-center justify-center w-8 h-8 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-indigo-100 hover:bg-indigo-200 rounded-full transition-colors duration-200"
               title="Acesse nosso Linktree"
             >
-              <TbBrandLinktree size={20} className="text-indigo-600 md:hidden" />
-              <TbBrandLinktree size={28} className="text-indigo-600 hidden md:block" />
+              <TbBrandLinktree size={16} className="text-indigo-600 md:hidden" />
+              <TbBrandLinktree size={20} className="text-indigo-600 hidden md:block lg:hidden" />
+              <TbBrandLinktree size={24} className="text-indigo-600 hidden lg:block" />
             </button>
           </div>
         </div>
 
         {/* Espaço vazio à direita para balanceamento */}
-        <div className="w-12 md:w-16"></div>
+        <div className="w-8 md:w-12 lg:w-14"></div>
       </div>
     </div>
   );
