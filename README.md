@@ -19,11 +19,12 @@ Este projeto foi criado para a empresa "De Leve na Tese", um serviço de mentori
 - ✅ Validação de formulário com modal personalizado responsivo exigindo ao menos uma seleção em cada categoria
 - 📊 Resumo detalhado do orçamento com informações de contato e formatação brasileira de moeda
 - 📧 Opções para enviar orçamento por email ou solicitar contratação
-- 📱 Interface responsiva e amigável para desktop e dispositivos móveis
+- 📱 Interface totalmente responsiva otimizada para smartphones, tablets e desktop
 - 🎨 Feedback visual claro com emojis para cada categoria de serviço
 - 🔤 Tipografia otimizada com fonte "Stadio Now Display Trial" para títulos e textos de boas-vindas
 - 💰 Formatação brasileira de valores monetários com separadores de milhares (R$ 1.234,56)
 - 🖼️ Logo centralizado no topo de todas as páginas para identidade visual consistente
+- 🌐 Footer responsivo com links para redes sociais (Instagram, Email, Linktree)
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -32,6 +33,7 @@ Este projeto foi criado para a empresa "De Leve na Tese", um serviço de mentori
 - Context API para gerenciamento de estado
 - Tailwind CSS para estilização responsiva
 - Lucide React para ícones e elementos visuais
+- React Icons para ícones de marca (Linktree)
 - Session Storage para persistência de dados entre páginas
 - Fonte personalizada "Stadio Now Display Trial"
 
@@ -120,8 +122,8 @@ calculadora-de-leve/
 - **OrcamentoActions.js**: Implementa as ações de enviar por email e contratar serviços com botões estilizados e ícones maiores.
 
 #### 🏗️ Componentes de Layout (`/components/layout`)
-- **Header.js**: Cabeçalho responsivo com título em fonte personalizada "Stadio Now Display Trial", subtítulo otimizado e suporte a texto de boas-vindas.
-- **Footer.js**: Rodapé com informações de contato, ícones intuitivos e tipografia aprimorada para melhor legibilidade.
+- **Header.js**: Cabeçalho responsivo com título em fonte personalizada "Stadio Now Display Trial", tipografia adaptável e suporte a texto de boas-vindas.
+- **Footer.js**: Rodapé responsivo com logo da marca, ícones de redes sociais (Instagram, Email, Linktree) e design adaptativo para diferentes dispositivos.
 
 #### 🛠️ Utilitários (`/utils`)
 - **formatters.js**: Contém funções para formatação de valores monetários brasileiros e preparação de texto para email/cópia.
@@ -150,9 +152,9 @@ calculadora-de-leve/
 - Correção automática de singular/plural para páginas (1 página vs 2 páginas)
 - Notificação de validade de até 5 dias úteis com ícone de relógio
 - Opções para enviar por email ou solicitar contratação com botões estilizados
-- Informações de contato com ícones intuitivos no rodapé
+- Footer responsivo com logo e ícones de redes sociais
 - Emojis consistentes entre as páginas para melhor UX
-- Tipografia otimizada com fontes maiores para melhor legibilidade
+- Tipografia responsiva otimizada para todos os dispositivos
 - Logo centralizado mantendo identidade visual consistente
 
 ### 🎨 Melhorias de UI/UX
@@ -164,9 +166,11 @@ calculadora-de-leve/
 - **Emojis Intuitivos**: Identificação visual rápida das categorias de serviços (🧠📅📖📝)
 - **Input Editável para Mentoria**: Campo numérico editável (1-100) combinado com botões +/- para facilitar seleção de grandes quantidades
 - **Logo Centralizado**: Posicionamento consistente do logo no topo de todas as páginas com tamanho otimizado
-- **Tipografia Otimizada**: Fontes maiores em todos os elementos para melhor legibilidade em desktop e mobile
+- **Responsividade Total**: Interface otimizada com tipografia adaptável para smartphones, tablets e desktop
+- **Footer Responsivo**: Logo da marca e ícones de redes sociais com tamanhos adaptativos por dispositivo
+- **Mobile-First Design**: Fontes menores em dispositivos móveis, maiores em desktop, com breakpoints inteligentes
 - **Espaçamento Melhorado**: Distribuição visual aprimorada entre elementos da interface
-- **Responsividade Total**: Interface otimizada para desktop, tablet e smartphone
+- **Touch-Friendly**: Áreas de toque otimizadas para dispositivos móveis
 
 ## 📋 Arquitetura do Projeto
 
@@ -178,4 +182,5 @@ Este projeto segue os princípios de arquitetura modular e componentes reutiliz�
 - **Componentes Atômicos**: Organização em componentes pequenos e reutilizáveis
 - **Separação de Responsabilidades**: Componentes de UI separados da lógica de negócios
 - **Fontes Personalizadas**: Implementação de tipografia customizada com fallbacks
-- **Design System**: Padrões visuais consistentes em toda a aplicação
+- **Design System Responsivo**: Padrões visuais consistentes e adaptativos em toda a aplicação
+- **Mobile-First Approach**: Desenvolvimento priorizing dispositivos móveis com escalabilidade para desktop
